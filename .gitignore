@@ -3,5 +3,7 @@ __pycache__/
 *.pyc
 logs/
 data/raw/
+data/panel/req_*.jsonl
+.scrub_terms
 .env
 .DS_Store

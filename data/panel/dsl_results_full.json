@@ -1,0 +1,90 @@
+{
+  "scope": "full",
+  "N": 7558,
+  "n_calibration": 200,
+  "primary_DSL": {
+    "estimate": 0.0454,
+    "se": 0.01545,
+    "ci95": [
+      0.01511,
+      0.07568
+    ],
+    "surrogate_mean": 0.0954,
+    "correction": -0.05
+  },
+  "spec_curve": {
+    "majority_uncorrected": 0.0954,
+    "family_collapsed_LCM3": 0.12165,
+    "dependence_LCM4": 0.08326,
+    "DSL_excl_T7": 0.04891
+  },
+  "undecidable_extremes": {
+    "undecidable_as_delegation": {
+      "surrogate": 0.01469,
+      "dsl": 0.02969,
+      "ci95": [
+        0.00782,
+        0.05156
+      ]
+    },
+    "undecidable_as_nondelegation": {
+      "surrogate": 0.0954,
+      "dsl": 0.0454,
+      "ci95": [
+        0.01511,
+        0.07568
+      ]
+    }
+  },
+  "per_test_agreement": {
+    "T1": {
+      "agree": 0.815,
+      "wilson95": [
+        0.7554,
+        0.8627
+      ]
+    },
+    "T2": {
+      "agree": 0.895,
+      "wilson95": [
+        0.8448,
+        0.9303
+      ]
+    },
+    "T3": {
+      "agree": 0.825,
+      "wilson95": [
+        0.7664,
+        0.8714
+      ]
+    },
+    "T4": {
+      "agree": 0.955,
+      "wilson95": [
+        0.9167,
+        0.9761
+      ]
+    },
+    "T5": {
+      "agree": 0.885,
+      "wilson95": [
+        0.8334,
+        0.9221
+      ]
+    },
+    "T6": {
+      "agree": 0.765,
+      "wilson95": [
+        0.7016,
+        0.8184
+      ]
+    },
+    "T7": {
+      "agree": 0.94,
+      "wilson95": [
+        0.8981,
+        0.9653
+      ]
+    }
+  }
+}

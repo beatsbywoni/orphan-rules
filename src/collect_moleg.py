@@ -10,7 +10,7 @@ v3 — 2026-08-14. 실제 API 응답으로 전 구간 구조 검증 완료.
 파이프라인
 ---------
   smoke       권한·응답구조 진단
-  casecheck   worked example — 오라클 하급심 판결 1건(인천지법 2025구합50834) 재현
+  casecheck   인천지법 2025구합50834 사례 재현
   laws        교육부 소관 법령 수집        → data/laws.jsonl
   admrules    교육부 소관 행정규칙 수집    → data/admrules.jsonl
   delegation  위임 간선 전수 조회          → data/edges.jsonl
@@ -125,7 +125,10 @@ def _strip_tags(s):
     return re.sub(r"<[^>]*>", " ", str(s or "")).replace("&nbsp;", " ")
 
 
-def paginate(target, extra=None, limit=None, quiet=False):
+def paginate(target, extra=None, limit=None, quiet=False, raw_prefix="list"):
+    """raw_prefix: 원시 목록 응답의 파일명 접두어. 기본 'list'는 MOE 코퍼스의
+    고정(pinned) 아카이브 네임스페이스이므로, 코퍼스 밖 조회(예: 전국 집계)는
+    반드시 다른 접두어를 넘겨 아카이브 덮어쓰기를 피한다."""
     extra = extra or {}
     root, itemkey = LIST_ROOT.get(target), LIST_ITEM.get(target, target)
     page, total, out = 1, None, []
@@ -133,7 +136,7 @@ def paginate(target, extra=None, limit=None, quiet=False):
         params = {"target": target, "display": MAX_DISPLAY, "page": page}
         params.update(extra)
         js = _get(SEARCH_URL, params,
-                  raw_name=f"list_{target}_{page:04d}.json" if not quiet else None,
+                  raw_name=f"{raw_prefix}_{target}_{page:04d}.json" if not quiet else None,
                   quiet=quiet)
         if js is None:
             break
@@ -234,6 +237,47 @@ def cmd_admrules(args):
     _write_jsonl(DATA / "admrules.jsonl", out)
 
 
+def cmd_lawbody(args):
+    """법령 조문 본문 수집 (조작 점검용). laws.jsonl의 법령ID로 lawService 호출.
+    출력: data/lawbodies.jsonl — {법령ID, 법령명한글, 조문: [{조번호, 조제목, 조내용}]}"""
+    laws = _read_jsonl(DATA / "laws.jsonl")
+    if not laws:
+        sys.exit("laws.jsonl 없음. 먼저 `laws` 실행.")
+    out = []
+    for i, r in enumerate(laws, 1):
+        lid = r.get("법령ID")
+        if not lid:
+            continue
+        js = _get(SERVICE_URL, {"target": "law", "ID": lid},
+                  raw_name=f"law_{lid}.json")
+        body = next(iter(js.values()), {}) if isinstance(js, dict) else {}
+        units = body.get("조문", {})
+        if isinstance(units, dict):
+            units = units.get("조문단위", [])
+        if isinstance(units, dict):
+            units = [units]
+        arts = []
+        for u in units or []:
+            if not isinstance(u, dict):
+                continue
+            if (u.get("조문여부") or "조문") != "조문":
+                continue          # 편/장/절 표제(전문) 단위는 제외
+            arts.append({"조번호": str(u.get("조문번호", "")).strip(),
+                         "가지번호": str(u.get("조문가지번호") or "").strip(),
+                         "조문키": str(u.get("조문키") or "").strip(),
+                         "조제목": (u.get("조문제목") or "").strip(),
+                         "조내용": _flatten_text(u)})
+        out.append({"법령ID": lid, "법령명한글": r.get("법령명한글"),
+                    "법령일련번호": r.get("법령일련번호"), "조문": arts})
+        if i % 25 == 0:
+            print(f"  {i}/{len(laws)}  (누적 조문 {sum(len(x['조문']) for x in out)})")
+    _write_jsonl(DATA / "lawbodies.jsonl", out)
+    tot = sum(len(x["조문"]) for x in out)
+    empty = sum(1 for x in out if not x["조문"])
+    print(f"\n법령 {len(out)}건, 조문 {tot}개 수집 → data/lawbodies.jsonl")
+    print(f"  조문 0개인 법령: {empty}건")
+
+
 TEXT_KEYS = {"조문내용", "항내용", "호내용", "목내용", "별표내용", "내용"}
 
 
@@ -265,6 +309,191 @@ def _collect_str(v, acc):
 
 
 # ---------------------------------------------------------------- delegation
+
+# ---------------------------------------------------------------- 점검 페이지 탐지
+# law.go.kr이 국가정보자원관리원 "시스템 점검" 안내 페이지를 404로 돌려주는 구간이
+# 있다. 이때 본문은 HTML이며 OC·파라미터와 무관하게 모든 요청이 404가 된다.
+# 계정 문제로 오진하지 않도록 바이트 수준에서 식별한다.
+_MAINT_MARKERS = ("시스템 점검".encode("utf-8"), "국가정보자원관리원".encode("utf-8"))
+
+
+def is_maintenance(content: bytes) -> bool:
+    if not content:
+        return False
+    head = content[:4000]
+    return any(m in head for m in _MAINT_MARKERS)
+
+
+def maintenance_notice():
+    print("\n" + "=" * 62)
+    print("law.go.kr 이 '시스템 점검' 안내 페이지를 돌려주고 있다.")
+    print("  · 응답 본문 = 국가정보자원관리원 점검 안내 HTML (상태코드는 404)")
+    print("  · OC·파라미터·엔드포인트와 무관하며, OC 를 빼도 동일하다.")
+    print("  · 계정 문제가 아니므로 신청 상태를 건드리지 말 것.")
+    print("  → 점검이 끝난 뒤 같은 명령을 다시 실행하면 된다.")
+    print("     대기 후 자동 재시도:  sh run_wait_api.sh")
+    print("=" * 62)
+
+
+def _probe(target, extra, label):
+    """단건 조회로 totalCnt만 확인. (status, totalCnt) 반환. 404면 (404, None)."""
+    params = {"target": target, "display": 1, "page": 1}
+    params.update(extra or {})
+    params.setdefault("OC", OC)
+    params.setdefault("type", "JSON")
+    try:
+        r = SESSION.get(SEARCH_URL, params=params, timeout=TIMEOUT)
+        time.sleep(SLEEP)
+        if r.status_code != 200:
+            tag = " · 시스템 점검 페이지" if is_maintenance(r.content) else ""
+            print(f"  [{label}] HTTP {r.status_code}{tag}")
+            return ("MAINT" if tag else r.status_code), None
+        js = json.loads(r.text)
+        root = LIST_ROOT.get(target)
+        body = js.get(root) if root and root in js else next(iter(js.values()), None)
+        n = int((body or {}).get("totalCnt") or 0)
+        print(f"  [{label}] HTTP 200 · totalCnt = {n}")
+        return 200, n
+    except json.JSONDecodeError:
+        print(f"  [{label}] HTTP 200 이지만 JSON 아님 (서비스 미신청 가능)")
+        return 200, None
+    except requests.RequestException as e:
+        print(f"  [{label}] 요청 실패: {e}")
+        return None, None
+
+
+# org 필터 없는 전국 조회에 어떤 파라미터 조합이 통하는지 실측으로 찾는다.
+# law.go.kr DRF는 검색어 없는 목록 요청에 404를 돌려주는 사례가 있어, 알려진
+# 우회 조합을 순서대로 시도한다. 성공한 조합은 그대로 집계에 쓴다.
+_NATIONWIDE_VARIANTS = [
+    ({}, "기본(파라미터 없음)"),
+    ({"query": "*"}, "query=*"),
+    ({"search": 1, "query": ""}, "search=1&query=(빈값)"),
+    ({"sort": "lasc"}, "sort=lasc"),
+    ({"type": "XML"}, "type=XML"),
+    ({"efYd": ""}, "efYd=(빈값)"),
+]
+
+
+def _nationwide_total(target, base_extra=None):
+    """전국 totalCnt를 얻는다. 통하는 조합을 찾으면 (총건수, 조합) 반환."""
+    for extra, label in _NATIONWIDE_VARIANTS:
+        e = dict(base_extra or {})
+        e.update(extra)
+        st, n = _probe(target, e, f"{target} / {label}")
+        if st == 200 and n:
+            return n, e
+    return None, None
+
+
+def cmd_apideep(args):
+    """404의 실제 원인을 보기 위한 심층 진단. 상태코드뿐 아니라 응답 본문
+    앞부분을 그대로 찍는다. law.go.kr은 권한·신청 문제를 HTML 안내문으로
+    돌려주는 경우가 많아, 본문을 봐야 원인이 드러난다."""
+    import urllib.parse
+    BROWSER_UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                  "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36")
+    combos = [
+        ("https + 연구UA + JSON", "https://www.law.go.kr/DRF/lawSearch.do", None, {"type": "JSON"}),
+        ("http  + 연구UA + JSON", "http://www.law.go.kr/DRF/lawSearch.do", None, {"type": "JSON"}),
+        ("https + 브라우저UA + JSON", "https://www.law.go.kr/DRF/lawSearch.do", BROWSER_UA, {"type": "JSON"}),
+        ("https + 브라우저UA + XML", "https://www.law.go.kr/DRF/lawSearch.do", BROWSER_UA, {"type": "XML"}),
+        ("https(open) + 브라우저UA + JSON", "https://open.law.go.kr/DRF/lawSearch.do", BROWSER_UA, {"type": "JSON"}),
+    ]
+    base = {"target": "law", "display": 1, "page": 1, "OC": OC}
+    for label, url, ua, extra in combos:
+        p = dict(base); p.update(extra)
+        h = {"User-Agent": ua} if ua else {}
+        try:
+            r = requests.get(url, params=p, headers=h, timeout=TIMEOUT, allow_redirects=True)
+            body = (r.text or "")[:400].replace("\n", " ").replace("\r", " ")
+            print(f"\n[{label}]")
+            print(f"  최종 URL : {r.url}")
+            print(f"  상태     : {r.status_code}  ({r.headers.get('Content-Type','?')})")
+            print(f"  본문앞400: {body}")
+            if is_maintenance(r.content):
+                print("  판정     : ★ 시스템 점검 안내 페이지 (계정 문제 아님)")
+        except requests.RequestException as e:
+            print(f"\n[{label}]\n  요청 실패: {e}")
+        time.sleep(0.6)
+    print("\n--- OC 없이도 같은가? (권한 문제인지 엔드포인트 문제인지 가른다) ---")
+    try:
+        r = requests.get("https://www.law.go.kr/DRF/lawSearch.do",
+                         params={"target": "law", "display": 1, "type": "JSON"},
+                         headers={"User-Agent": BROWSER_UA}, timeout=TIMEOUT)
+        print(f"  OC 생략 → {r.status_code}: {(r.text or '')[:200]}")
+    except requests.RequestException as e:
+        print(f"  OC 생략 → 실패: {e}")
+    print("\n판정 가이드")
+    print("  · 본문이 '시스템 점검' 안내 HTML → 서버 점검. 계정과 무관. 끝난 뒤 재실행.")
+    print("  · 404 + 다른 HTML 안내문 → OC 승인 만료 또는 서비스 신청 상태 변경.")
+    print("    law.go.kr 오픈API 신청 페이지에서 승인 상태와 대상(target) 신청 목록을 확인할 것.")
+    print("  · http 만 200 → 엔드포인트가 https 를 더 이상 서비스하지 않는 것. SEARCH_URL 교체.")
+    print("  · 브라우저UA 만 200 → UA 필터링. SESSION 헤더 교체.")
+    print("  · OC 생략도 404 → 계정 문제가 아니라 엔드포인트 문제.")
+
+
+def cmd_apiprobe(args):
+    """API 파라미터 진단만 수행 (수집 없음). 404 원인 파악용."""
+    print(f"OC = {OC}\n")
+    print("[A] org 필터 있음 — 기존에 성공한 형태")
+    _probe("law", {"org": MINISTRY_CODE}, "law + org")
+    _probe("admrul", {"org": MINISTRY_CODE, "nw": 1}, "admrul + org + nw")
+    print("\n[B] org 필터 없음 — 전국 조회 변형")
+    for extra, label in _NATIONWIDE_VARIANTS:
+        _probe("law", extra, f"law / {label}")
+    for extra, label in _NATIONWIDE_VARIANTS:
+        _probe("admrul", dict(extra, nw=1), f"admrul / {label}")
+
+
+def cmd_ministry_stats(args):
+    """§5.1 부문 선정 근거용 집계.
+
+    필요한 건 전국 '건수'이지 전체 목록이 아니다. totalCnt만 읽으면 API 호출이
+    2~4회로 끝나고, data/raw 의 고정 아카이브를 건드릴 일도 없다.
+    org 필터 없는 조회가 404를 내는 환경이 있어, 통하는 파라미터 조합을
+    실측으로 찾은 뒤 진행한다."""
+    if OC == "test":
+        sys.exit("MOLEG_OC 미설정. law.go.kr은 OC=test에 404를 돌려준다.\n"
+                 "  export MOLEG_OC=<발급받은 ID>  후 다시 실행할 것.")
+    print(f"OC = {OC}\n[1] 교육부 기준선 (기존 코퍼스와 대조) …")
+    st_l, moe_law = _probe("law", {"org": MINISTRY_CODE}, "MOE law")
+    st_r, moe_rule = _probe("admrul", {"org": MINISTRY_CODE, "nw": 1}, "MOE admrul")
+    if "MAINT" in (st_l, st_r):
+        maintenance_notice()
+        sys.exit(3)
+    if moe_law is None:
+        sys.exit("교육부 조회도 실패. OC 승인·서비스 신청 상태를 먼저 확인할 것.")
+
+    print("\n[2] 전국 건수 (통하는 파라미터 조합 탐색) …")
+    natl_law, used_l = _nationwide_total("law")
+    natl_rule, used_r = _nationwide_total("admrul", {"nw": 1})
+
+    # OC 는 공개 저장소에 나가는 산출물에 기록하지 않는다 (식별 문자열).
+    out = {"조회일시_KST": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+           "교육부_법령": moe_law, "교육부_행정규칙": moe_rule,
+           "전국_법령": natl_law, "전국_행정규칙": natl_rule,
+           "전국조회_파라미터_법령": used_l, "전국조회_파라미터_행정규칙": used_r}
+    if natl_law:
+        out["교육부_법령_비중"] = round(moe_law / natl_law * 100, 2)
+    if natl_rule and moe_rule:
+        out["교육부_행정규칙_비중"] = round(moe_rule / natl_rule * 100, 2)
+    (DATA / "ministry_stats.json").write_text(
+        json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    print("\n=== 결과 ===")
+    print(f"  교육부 법령 {moe_law}건 / 행정규칙 {moe_rule}건")
+    if natl_law:
+        print(f"  전국 법령 {natl_law}건 → 교육부 비중 {out['교육부_법령_비중']}%")
+    else:
+        print("  전국 법령: 조회 실패 — 아래 진단을 실행할 것")
+        print("      .venv/bin/python src/collect_moleg.py apiprobe")
+    if natl_rule and moe_rule:
+        print(f"  전국 행정규칙 {natl_rule}건 → 교육부 비중 {out['교육부_행정규칙_비중']}%")
+    print("\n→ data/ministry_stats.json")
+    if not natl_law:
+        sys.exit(2)          # 래퍼가 이 코드를 보고 진단(apiprobe)을 붙인다
+
 
 def cmd_delegation(args):
     laws = _read_jsonl(DATA / "laws.jsonl")
@@ -627,7 +856,7 @@ def cmd_oracle(args):
 # ---------------------------------------------------------------- casecheck
 
 def cmd_casecheck(args):
-    print("=== worked example: 오라클 하급심 판결 재현 (인천지법 2025구합50834) ===\n")
+    print("=== 사례 재현: 인천지법 2025구합50834 ===\n")
     js = _get(SEARCH_URL, {"target": "admrul", "search": 1,
                            "query": "교육공무원 인사관리규정", "display": 5})
     rows = [r for r in _L((next(iter(js.values()), {}) or {}).get("admrul"))
@@ -695,11 +924,15 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
     for n, h in (("smoke", "권한·응답구조 진단"),
-                 ("casecheck", "오라클 하급심 판결 재현 예시"),
+                 ("casecheck", "2025구합50834 사례 재현"),
                  ("laws", "소관 법령 수집"),
                  ("admrules", "행정규칙 목록+본문 수집"),
                  ("delegation", "위임 간선 전수 조회"),
-                 ("detect", "결함 탐지 D1/D1a/D2/D4")):
+                 ("detect", "결함 탐지 D1/D1a/D2/D4"),
+                 ("lawbody", "법령 조문 본문 수집(조작 점검용)"),
+                 ("ministry-stats", "전국 대비 교육부 비중 집계 (§5.1 근거)"),
+                 ("apiprobe", "law.go.kr 파라미터 진단 (404 원인 파악)"),
+                 ("apideep", "law.go.kr 404 심층 진단 (응답 본문까지)")):
         sub.add_parser(n, help=h)
 
     g = sub.add_parser("goldset", help="라벨링용 층화표본 추출")
@@ -715,7 +948,7 @@ def main():
                    help="출력 파일명 (data/ 아래). 부분 재실행 시 다른 이름 지정")
 
     a = p.parse_args()
-    globals()[f"cmd_{a.cmd}"](a)
+    globals()[f"cmd_{a.cmd.replace('-', '_')}"](a)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,383 @@
+{
+  "T1_pilot": {
+    "provider": "anthropic",
+    "model": "claude-haiku-4-5-20251001",
+    "batch_id": "msgbatch_0141AjxCkSPNNA9CxTqnPaUC",
+    "status": "ended",
+    "submitted_at": "2026-08-18T22:07:07+0900",
+    "_results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_0141AjxCkSPNNA9CxTqnPaUC/results",
+    "counts": {
+      "processing": 0,
+      "succeeded": 200,
+      "errored": 0,
+      "canceled": 0,
+      "expired": 0
+    }
+  },
+  "T2_pilot": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "batch_id": "msgbatch_01YRzygvMf2Mmhc5ped2xBYn",
+    "status": "ended",
+    "submitted_at": "2026-08-19T12:40:18+0900",
+    "_results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01YRzygvMf2Mmhc5ped2xBYn/results",
+    "counts": {
+      "processing": 0,
+      "succeeded": 200,
+      "errored": 0,
+      "canceled": 0,
+      "expired": 0
+    }
+  },
+  "T3_pilot": {
+    "provider": "anthropic",
+    "model": "claude-opus-5",
+    "batch_id": "msgbatch_016KM3pLE46iuLQUoFQQdRh6",
+    "status": "ended",
+    "submitted_at": "2026-08-19T12:40:19+0900",
+    "_results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_016KM3pLE46iuLQUoFQQdRh6/results",
+    "counts": {
+      "processing": 0,
+      "succeeded": 200,
+      "errored": 0,
+      "canceled": 0,
+      "expired": 0
+    }
+  },
+  "T4_pilot": {
+    "provider": "openai",
+    "model": "gpt-5-nano",
+    "batch_id": "batch_6a84590252a081909d960d927f087311",
+    "status": "completed",
+    "submitted_at": "2026-08-18T22:07:14+0900",
+    "_output_file": "file-HVQJhYAbZmtTF2quGUm2Nh",
+    "_error_file": null,
+    "counts": {
+      "total": 200,
+      "completed": 200,
+      "failed": 0
+    }
+  },
+  "T5_pilot": {
+    "provider": "openai",
+    "model": "gpt-5-mini",
+    "batch_id": "batch_6a84590475b481908119836de7ee953e",
+    "status": "completed",
+    "submitted_at": "2026-08-18T22:07:16+0900",
+    "_output_file": "file-V64CaFcDpHiVbqTVNpCS4R",
+    "_error_file": null,
+    "counts": {
+      "total": 200,
+      "completed": 200,
+      "failed": 0
+    }
+  },
+  "T6_pilot": {
+    "provider": "openai",
+    "model": "gpt-5.4",
+    "batch_id": "batch_6a8468a110e88190bc8b3b38a93b5a20",
+    "status": "completed",
+    "submitted_at": "2026-08-18T23:13:53+0900",
+    "_output_file": "file-MaU3zJgkowKw9vdtL5nag4",
+    "_error_file": null,
+    "counts": {
+      "total": 200,
+      "completed": 200,
+      "failed": 0
+    }
+  },
+  "pilot_check_passed": true,
+  "parse": {
+    "T3_pilot": {
+      "n": 200,
+      "fail": 0,
+      "rate": 1.0
+    },
+    "T1_pilot": {
+      "n": 200,
+      "fail": 0,
+      "rate": 1.0
+    },
+    "T4_pilot": {
+      "n": 200,
+      "fail": 0,
+      "rate": 1.0
+    },
+    "T5_pilot": {
+      "n": 200,
+      "fail": 0,
+      "rate": 1.0
+    },
+    "T6_pilot": {
+      "n": 200,
+      "fail": 0,
+      "rate": 1.0
+    },
+    "T2_pilot": {
+      "n": 200,
+      "fail": 0,
+      "rate": 1.0
+    },
+    "T6_full": {
+      "n": 7558,
+      "fail": 0,
+      "rate": 1.0
+    },
+    "T1_full": {
+      "n": 7558,
+      "fail": 0,
+      "rate": 1.0
+    },
+    "T2_full": {
+      "n": 7558,
+      "fail": 1,
+      "rate": 0.99987
+    },
+    "T3_full": {
+      "n": 7558,
+      "fail": 3,
+      "rate": 0.9996
+    },
+    "T4_full": {
+      "n": 7558,
+      "fail": 22,
+      "rate": 0.99709
+    },
+    "T5_full": {
+      "n": 7558,
+      "fail": 0,
+      "rate": 1.0
+    },
+    "T6_cons": {
+      "n": 1500,
+      "fail": 0,
+      "rate": 1.0,
+      "sc_L1": 0.988,
+      "sc_L2": 0.9887
+    },
+    "T1_cons": {
+      "n": 1500,
+      "fail": 0,
+      "rate": 1.0,
+      "sc_L1": 0.994,
+      "sc_L2": 0.992
+    },
+    "T5_cons": {
+      "n": 1500,
+      "fail": 1,
+      "rate": 0.99933,
+      "sc_L1": 0.9454,
+      "sc_L2": 0.9674
+    },
+    "T4_cons": {
+      "n": 1500,
+      "fail": 6,
+      "rate": 0.996,
+      "sc_L1": 0.9847,
+      "sc_L2": 0.8767
+    },
+    "T2_cons": {
+      "n": 1500,
+      "fail": 3,
+      "rate": 0.998,
+      "sc_L1": 0.9674,
+      "sc_L2": 0.9607
+    },
+    "T3_cons": {
+      "n": 1500,
+      "fail": 0,
+      "rate": 1.0,
+      "sc_L1": 0.9853,
+      "sc_L2": 0.954
+    }
+  },
+  "T1_full": {
+    "provider": "anthropic",
+    "model": "claude-haiku-4-5-20251001",
+    "batch_id": "msgbatch_01HDdKChLtPuFwRCzam1qKEB",
+    "status": "ended",
+    "submitted_at": "2026-08-19T22:24:08+0900",
+    "_results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01HDdKChLtPuFwRCzam1qKEB/results",
+    "counts": {
+      "processing": 0,
+      "succeeded": 7558,
+      "errored": 0,
+      "canceled": 0,
+      "expired": 0
+    }
+  },
+  "T2_full": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "batch_id": "msgbatch_01FCfEYwf8Mvk2ZRMqnbjwfH",
+    "status": "ended",
+    "submitted_at": "2026-08-19T22:24:14+0900",
+    "_results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01FCfEYwf8Mvk2ZRMqnbjwfH/results",
+    "counts": {
+      "processing": 0,
+      "succeeded": 7558,
+      "errored": 0,
+      "canceled": 0,
+      "expired": 0
+    }
+  },
+  "T3_full": {
+    "provider": "anthropic",
+    "model": "claude-opus-5",
+    "batch_id": "msgbatch_01R6BR4dq4pVEvM4KHLyvTv4",
+    "status": "ended",
+    "submitted_at": "2026-08-19T22:24:19+0900",
+    "_results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01R6BR4dq4pVEvM4KHLyvTv4/results",
+    "counts": {
+      "processing": 0,
+      "succeeded": 7558,
+      "errored": 0,
+      "canceled": 0,
+      "expired": 0
+    }
+  },
+  "T4_full": {
+    "provider": "openai",
+    "model": "gpt-5-nano",
+    "batch_id": "batch_6a85ae894f6481908a868683167e8ebc",
+    "status": "completed",
+    "submitted_at": "2026-08-19T22:24:25+0900",
+    "_output_file": "file-3qVeVSjNjeaoxm8M7YuBiK",
+    "_error_file": null,
+    "counts": {
+      "total": 7558,
+      "completed": 7558,
+      "failed": 0
+    }
+  },
+  "T5_full": {
+    "provider": "openai",
+    "model": "gpt-5-mini",
+    "batch_id": "batch_6a85ae8fb04481908739128fa36b5566",
+    "status": "completed",
+    "submitted_at": "2026-08-19T22:24:31+0900",
+    "_output_file": "file-9q8H2PRHhct1zJbWZ6GTkL",
+    "_error_file": null,
+    "counts": {
+      "total": 7558,
+      "completed": 7558,
+      "failed": 0
+    }
+  },
+  "T6_full": {
+    "chunked": true,
+    "provider": "openai",
+    "model": "gpt-5.4",
+    "n_chunks": 19,
+    "done": [
+      "batch_6a85b9bdd74c819082f092e2290fe8e9",
+      "batch_6a85bab43e308190bee8cb29532da653",
+      "batch_6a85bba8f11481908b8c627a2c33bdae",
+      "batch_6a85bc9d0edc8190a1c902d926c97066",
+      "batch_6a85bd923ee08190bddbcb360c4e0ce1",
+      "batch_6a85be8664a48190a7afb9de327f5f46",
+      "batch_6a85c86937748190bf930c6ef94a62d4",
+      "batch_6a85c9d589848190adebda0bf97db3f7",
+      "batch_6a85d86b4bb48190926a0f26516d315e",
+      "batch_6a85d95f33f081908f11752b8c4d6b74",
+      "batch_6a85e3ba5dfc819099a050cf17bc855d",
+      "batch_6a85e527a7a0819097912dfa3a764607",
+      "batch_6a85effca330819083b370378ab4d88a",
+      "batch_6a85f0f1491481908c579c84b58d84ef",
+      "batch_6a85f16cd350819086202844965d0f7e",
+      "batch_6a85fad7bcb08190abc1aac1ee3c3398",
+      "batch_6a85fbcbc0348190b82ab1071b815fa4",
+      "batch_6a85fc46aa308190837566b4d44b93f1",
+      "batch_6a85fea3e5c08190827f3dd084dfbcc3"
+    ],
+    "current": null,
+    "status": "ended"
+  },
+  "T6_cons": {
+    "chunked": true,
+    "provider": "openai",
+    "model": "gpt-5.4",
+    "n_chunks": 4,
+    "done": [
+      "batch_6a862180306c81908f8c6bf45ad88c6b",
+      "batch_6a8622748cb481909a53afb3817202f3",
+      "batch_6a862c56a8ac8190adb45f184459c1dd",
+      "batch_6a862d4aca008190aac9429fb25c4957"
+    ],
+    "current": null,
+    "status": "ended"
+  },
+  "T1_cons": {
+    "provider": "anthropic",
+    "model": "claude-haiku-4-5-20251001",
+    "batch_id": "msgbatch_01DXNJDxcMz51kqjziQjByfb",
+    "status": "ended",
+    "submitted_at": "2026-08-20T12:05:22+0900",
+    "_results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01DXNJDxcMz51kqjziQjByfb/results",
+    "counts": {
+      "processing": 0,
+      "succeeded": 1500,
+      "errored": 0,
+      "canceled": 0,
+      "expired": 0
+    }
+  },
+  "T2_cons": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5",
+    "batch_id": "msgbatch_01F9Mk8t7Hvaj8UtFSVBr1gb",
+    "status": "ended",
+    "submitted_at": "2026-08-20T12:05:23+0900",
+    "_results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_01F9Mk8t7Hvaj8UtFSVBr1gb/results",
+    "counts": {
+      "processing": 0,
+      "succeeded": 1500,
+      "errored": 0,
+      "canceled": 0,
+      "expired": 0
+    }
+  },
+  "T3_cons": {
+    "provider": "anthropic",
+    "model": "claude-opus-5",
+    "batch_id": "msgbatch_013amj2Gur8YX11nTz1nkxYx",
+    "status": "ended",
+    "submitted_at": "2026-08-20T12:05:24+0900",
+    "_results_url": "https://api.anthropic.com/v1/messages/batches/msgbatch_013amj2Gur8YX11nTz1nkxYx/results",
+    "counts": {
+      "processing": 0,
+      "succeeded": 1500,
+      "errored": 0,
+      "canceled": 0,
+      "expired": 0
+    }
+  },
+  "T4_cons": {
+    "provider": "openai",
+    "model": "gpt-5-nano",
+    "batch_id": "batch_6a866ef93ba88190b74f70333506e0c4",
+    "status": "completed",
+    "submitted_at": "2026-08-20T12:05:27+0900",
+    "_output_file": "file-Ay77bNGHtR7n5rAMHphLNQ",
+    "_error_file": null,
+    "counts": {
+      "total": 1500,
+      "completed": 1500,
+      "failed": 0
+    }
+  },
+  "T5_cons": {
+    "provider": "openai",
+    "model": "gpt-5-mini",
+    "batch_id": "batch_6a866efd03d08190bfd7c04ba2830171",
+    "status": "completed",
+    "submitted_at": "2026-08-20T12:05:31+0900",
+    "_output_file": "file-VDxK9KJ3C1DiNM9bPT4cMT",
+    "_error_file": null,
+    "counts": {
+      "total": 1500,
+      "completed": 1500,
+      "failed": 0
+    }
+  }
+}
