@@ -1,6 +1,6 @@
 # Orphan Rules
 
-**Court-validated detection of administrative rules lacking delegation authority in Korea's legal hierarchy** — code, annotation data, panel outputs, and codebook.
+**Detection of administrative rules lacking delegation authority in Korea's legal hierarchy, evaluated against court decisions** — code, annotation data, panel outputs, and codebook.
 
 > Paper under review (target: *Artificial Intelligence and Law*). This repository accompanies a computational-legal study that formalizes delegation defects in the Korean legal order as well-formedness violations on a typed delegation graph, audits the government's own delegation-linkage metadata against statutory text, and validates defect detection against published court decisions that actually denied effect to administrative rules.
 >
@@ -28,6 +28,7 @@ The split is by size, not by selectivity. The reproduction target defined in the
 | `src/llm_annotate.py` | LLM second annotator (OpenAI-compatible endpoint), with repeat runs and self-consistency reporting |
 | `src/agreement.py` | Cohen's κ, Fleiss' κ / Krippendorff's α, sample-size calculator (no dependencies) |
 | `src/retest_kappa.py`, `src/make_retest_workbook.py` | Intra-annotator re-test: blank-form generation and agreement computation |
+| `src/triage_panel.py`, `docs/triage_rubric_T1_v1.md` | Machine-panel replication of the rule-level triage under a frozen, hashed rubric (post-registration analysis) |
 | `src/make_public.py` | The script that built this bundle — manifest, scrub table, and the identifier check that gates release |
 | `codebook/annotation_guideline.md` | Annotation codebook v1.1 (delegation clauses L1–L4; orphan-rule triage T1; oracle reading O1–O8), with its own revision note |
 | `docs/deviation_log.md` | Every departure from the preregistration, with date and rationale |

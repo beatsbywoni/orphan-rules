@@ -94,7 +94,7 @@ def block(st, ids):
 
 
 # ── 원고 문장 ───────────────────────────────────────────────────────────
-def sentence(l1_60, l1_58, l2_60):
+def sentence(l1_60, l1_58, l2_60, completed="2026-09-06"):
     def k(st):
         """κ 가 정의되지 않는 경우(양쪽 모두 단일 범주)는 그 사실을 말한다."""
         if st["kappa"] is None:
@@ -120,13 +120,24 @@ def sentence(l1_60, l1_58, l2_60):
                 + (f"(Cohen's κ = {k60}, PABAK = {fmt(l1_60['pabak'],2)})"
                    if k60 else f"(κ undefined at this prevalence; "
                                f"PABAK = {fmt(l1_60['pabak'],2)})")
-                + f"; L2 raw agreement was {l2_60['agree']*100:.1f}%. "
-                f"Excluding the two items whose identifiers appeared in a public "
+                + f"; over the {l2_60['n']} items both passes classify as delegations, L2 agreement "
+                + f"was {l2_60['agree']*100:.1f}% (κ = {fmt(l2_60['kappa'],2)})"
+                + (f", the {'two' if len(l2_60['disagreements'])==2 else len(l2_60['disagreements'])} divergent item"
+                   f"{'s' if len(l2_60['disagreements'])!=1 else ''} reproducing the primary form "
+                   f"but omitting a co-listed second form. " if l2_60['disagreements'] else ". ")
+                + f"Excluding the two items whose identifiers appeared in a public "
                 f"adjudication note before the re-test, L1 agreement over the "
                 f"remaining 58 was {l1_58['agree']*100:.1f}%"
                 + (f" (Cohen's κ = {k58})." if k58 else "."))
-    return ("The re-test was completed on the scheduled date. " + core +
-            " Every re-test label is released alongside the original.")
+    import datetime as _dt
+    done = _dt.date.fromisoformat(completed)
+    gap = (done - _dt.date(2026, 8, 15)).days
+    when = (f"The re-test was completed on {done.isoformat()}, {gap} days after the original "
+            f"labelling — beyond the registered three-week minimum, though two days before the "
+            f"calendar date named in the registration (recorded in the deviation log). ")
+    return (when + core +
+            " L2 is compared as form sets, co-listed forms included. "
+            "Every re-test label is released alongside the original.")
 
 
 # ── main ────────────────────────────────────────────────────────────────
@@ -135,6 +146,7 @@ def main():
     ap.add_argument("--file", default="data/goldset_retest_sept.xlsx")
     ap.add_argument("--orig", default="data/goldset_labeled_v2.csv")
     ap.add_argument("--apply", action="store_true", help="원고 자리표시자 교체")
+    ap.add_argument("--completed", default="2026-09-06", help="라벨링 완료일 (YYYY-MM-DD)")
     a = ap.parse_args()
 
     fp = ROOT / a.file
@@ -154,15 +166,29 @@ def main():
     ids_all = [r["id"] for r in new]
     ids_58 = [i for i in ids_all if i not in EXPOSED]
 
-    def pairs(ids, col, setwise=False):
-        by = {r["id"]: r for r in new}
-        f = as_set if setwise else (lambda x: str(x).strip())
-        return [(f(orig[i][col]), f(by[i].get(col, ""))) for i in ids]
+    by = {r["id"]: r for r in new}
 
-    l1_60 = agreement_stats(pairs(ids_all, "L1_위임인가"), "L1 (60건)")
-    l1_58 = agreement_stats(pairs(ids_58, "L1_위임인가"), "L1 (58건)")
-    l2_60 = agreement_stats(pairs(ids_all, "L2_위임된법형식", True), "L2 (60건)")
-    l2_58 = agreement_stats(pairs(ids_58, "L2_위임된법형식", True), "L2 (58건)")
+    def orig_l2(i):
+        # 원본은 주형식 열과 병존형식 열이 나뉘어 있고, 재검사 시트는 '|' 로 병기한다.
+        # 둘을 합쳐 집합으로 비교해야 같은 판정이 같은 것으로 잡힌다.
+        return as_set(orig[i]["L2_위임된법형식"]) | as_set(orig[i].get("L2_병존형식", ""))
+
+    def pairs(ids, col, setwise=False):
+        if setwise:
+            return [(orig_l2(i), as_set(by[i].get(col, ""))) for i in ids]
+        return [(str(orig[i][col]).strip(), str(by[i].get(col, "")).strip()) for i in ids]
+
+    # L2 는 원본·재검사 모두 '위임'인 항목에서만 정의된다 (인용·판단불가는 법형식 미해당 —
+    # 표 1 의 8월 재검사 행 59/59 와 같은 관행)
+    ids_l2_all = [i for i in ids_all if orig[i]["L1_위임인가"].strip() == "위임"
+                  and by[i]["L1_위임인가"] == "위임"]
+    ids_l2_58 = [i for i in ids_l2_all if i not in EXPOSED]
+
+    l1_60 = agreement_stats(pairs(ids_all, "L1_위임인가"), f"L1 ({len(ids_all)}건)")
+    l1_58 = agreement_stats(pairs(ids_58, "L1_위임인가"), f"L1 ({len(ids_58)}건, 노출 2건 제외)")
+    l2_60 = agreement_stats(pairs(ids_l2_all, "L2_위임된법형식", True), f"L2 ({len(ids_l2_all)}건, 양쪽 위임)")
+    l2_58 = agreement_stats(pairs(ids_l2_58, "L2_위임된법형식", True), f"L2 ({len(ids_l2_58)}건, 노출 2건 제외)")
+    ids_all, ids_58 = ids_all, ids_58
 
     def setlabel(st):
         for k in ("disagreements",):
@@ -172,13 +198,15 @@ def main():
     l2_60, l2_58 = setlabel(l2_60), setlabel(l2_58)
 
     print("\n=== 9월 재검사 결과 ===\n")
-    for st, ids in ((l1_60, ids_all), (l1_58, ids_58), (l2_60, ids_all), (l2_58, ids_58)):
+    for st, ids in ((l1_60, ids_all), (l1_58, ids_58), (l2_60, ids_l2_all), (l2_58, ids_l2_58)):
         print(st["label"]); print(block(st, ids))
 
-    sent = sentence(l1_60, l1_58, l2_60)
+    sent = sentence(l1_60, l1_58, l2_60, a.completed)
+    import datetime as _dt
+    gap_days = (_dt.date.fromisoformat(a.completed) - _dt.date(2026, 8, 15)).days
     print("=== 원고 §6.2 에 들어갈 문장 ===\n" + sent.strip() + "\n")
 
-    doc = ROOT / "docs" / "31_sept_retest_result.md"
+    doc = ROOT / "docs" / "35_sept_retest_result.md"
     doc.write_text(
         "# 9월 재검사 결과 (intra-annotator)\n\n"
         f"입력 파일: `{a.file}` · 원본: `{a.orig}`\n\n"
@@ -186,7 +214,7 @@ def main():
         "G0106·G0136 은 docs/22 §4.3 에서 식별자가 저자에게 노출된 이력이 있어 "
         "(편차 로그 P-2026-08-20-5), 전체 60건과 이 둘을 제외한 58건을 모두 보고한다.\n\n"
         "## L1 (위임/인용/판단불가)\n\n```\n" + block(l1_60, ids_all) + block(l1_58, ids_58) +
-        "```\n\n## L2 (법형식, 집합 비교)\n\n```\n" + block(l2_60, ids_all) + block(l2_58, ids_58) +
+        "```\n\n## L2 (법형식, 집합 비교 — 원본 주형식∪병존형식 vs 재검사 '|' 병기)\n\n```\n" + block(l2_60, ids_l2_all) + block(l2_58, ids_l2_58) +
         "```\n\n## 지표 해석\n\n"
         "L1 은 원본 분포가 극단적으로 치우쳐 있어(위임 58 / 인용 2) Cohen κ 가 "
         "유병률 역설에 취약하다. 그래서 관측일치도·PABAK·Gwet AC1 을 함께 적는다. "
@@ -194,6 +222,12 @@ def main():
         "## 원고 문장\n\n> " + sent.strip() + "\n",
         encoding="utf-8")
     print(f"→ {doc.relative_to(ROOT)}")
+    exp = ROOT / "data" / "goldset_retest_sept_labeled.csv"
+    with open(exp, "w", newline="", encoding="utf-8") as f:
+        cols = ["id", "L1_위임인가", "L2_위임된법형식", "L3_확신도", "L4_메모"]
+        w = csv.DictWriter(f, fieldnames=cols); w.writeheader()
+        for r in new: w.writerow({c: r.get(c, "") for c in cols})
+    print(f"→ {exp.relative_to(ROOT)} (텍스트 사본)")
 
     if a.apply:
         m = ROOT / "draft" / "paper_draft_v2.md"
@@ -207,6 +241,30 @@ def main():
             (m.parent / f".paper_draft_v2.bak{n}").write_text(s, encoding="utf-8")
             m.write_text(s.replace(PLACEHOLDER, ". " + sent.strip(), 1), encoding="utf-8")
             print(f"\n[적용] 원고 자리표시자 교체 완료 (백업 .paper_draft_v2.bak{n})")
+            extra = [
+                ("planned re-annotation for intra-annotator κ",
+                 "completed re-annotation for intra-annotator κ (§6.2)"),
+                ("and the scheduled intra-annotator re-test",
+                 "and the completed intra-annotator re-test (§6.2)"),
+            ]
+            t2 = m.read_text(encoding="utf-8"); done = 0
+            for o2, n2 in extra:
+                if o2 in t2: t2 = t2.replace(o2, n2, 1); done += 1
+            m.write_text(t2, encoding="utf-8")
+            print(f"[적용] §10 시제 정리 {done}/2")
+            row_anchor = "| author, re-test (3-day interval) | L1 / L2 | 1.000 (60/60) / 1.000 (59/59) | 1.000 / 1.000 |"
+            new_row = (f"| author, re-test ({gap_days} days, fresh sample) | L1 / L2 | "
+                       f"{l1_60['agree']:.3f} ({l1_60['n']-len(l1_60['disagreements'])}/{l1_60['n']}) / "
+                       f"{l2_60['agree']:.3f} ({l2_60['n']-len(l2_60['disagreements'])}/{l2_60['n']}) | "
+                       f"{fmt(l1_60['kappa'])} / {fmt(l2_60['kappa'])} |")
+            t3 = m.read_text(encoding="utf-8")
+            if row_anchor in t3 and new_row not in t3:
+                t3 = t3.replace(row_anchor, row_anchor + "\n" + new_row, 1)
+                t3 = t3.replace("In the re-test row the L2 denominator is 59 because one re-tested item is a citation, to which no instrument form applies.",
+                                "In the re-test rows the L2 denominators (59; 58) exclude re-tested items that are citations, to which no instrument form applies.", 1)
+                m.write_text(t3, encoding="utf-8"); print("[적용] 표 1 에 9월 재검사 행 추가")
+            else:
+                print("[건너뜀] 표 1 행: 앵커 없음 또는 이미 추가됨")
 
 
 if __name__ == "__main__":

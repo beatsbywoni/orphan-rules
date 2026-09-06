@@ -84,6 +84,12 @@ MANIFEST: list[tuple[str, str, str]] = [
     # 재검사(§6.2)
     ("src/retest_kappa.py",            "src/retest_kappa.py",            "copy"),
     ("src/make_retest_workbook.py",    "src/make_retest_workbook.py",    "copy"),
+    # 트리아지 기계 패널 (게이트 P1-1 — 동결 루브릭 + 재라벨 코드)
+    ("src/triage_panel.py",            "src/triage_panel.py",            "copy"),
+    ("docs/triage_rubric_T1_v1.md",    "docs/triage_rubric_T1_v1.md",    "copy"),
+    ("docs/34_triage_panel_result.md",  "docs/triage_panel_result.md",    "copy"),
+    # 그림 생성 (원고 Fig. 1–2 — 재현성 서사와 일관되게 스크립트 공개)
+    ("src/make_figures.py",            "src/make_figures.py",            "copy"),
     # 이 번들 자신을 만든 코드 — 무엇이 어떻게 스크럽됐는지 독자가 확인할 수 있게
     ("src/make_public.py",             "src/make_public.py",             "copy"),
 
@@ -101,6 +107,8 @@ MANIFEST: list[tuple[str, str, str]] = [
     ("data/goldset_retest_0818.csv",        "data/labels/goldset_retest_0818.csv",        "copy"),
     ("data/triage_retest_0818.csv",         "data/labels/triage_retest_0818.csv",         "copy"),
     ("data/goldset_retest_sept_blank.csv",  "data/labels/goldset_retest_sept_blank.csv",  "copy"),
+    ("data/goldset_retest_sept_labeled.csv","data/labels/goldset_retest_sept_labeled.csv","copy"),
+    ("data/goldset_retest_sept.xlsx",       "data/labels/goldset_retest_sept.xlsx",       "copy"),
 
     # ── 패널 (원고가 지정한 재현 대상) ───────────────────────────────────────
     ("data/panel/manifest.json",        "data/panel/manifest.json",        "copy"),
@@ -129,6 +137,8 @@ MANIFEST: list[tuple[str, str, str]] = [
     ("data/summary.json",                  "data/summary.json",                  "copy"),
     ("output/tables/table6_agreement.csv", "output/tables/table6_agreement.csv", "copy"),
     ("output/tables/table7_audit.csv",     "output/tables/table7_audit.csv",     "copy"),
+    ("output/figures/fig1_edges.png",      "output/figures/fig1_edges.png",      "copy"),
+    ("output/figures/fig2_triage.png",     "output/figures/fig2_triage.png",     "copy"),
 
     # ── 라이선스 (심사용에서는 저작권자 표기를 가린다) ────────────────────────
     ("LICENSE", "LICENSE", "copy"),
@@ -140,6 +150,12 @@ MANIFEST: list[tuple[str, str, str]] = [
     ("run_oracle.sh",      "scripts/run_oracle.sh",      "script"),
     ("run_oracle_detc.sh", "scripts/run_oracle_detc.sh", "script"),
 ]
+
+# 트리아지 기계 패널 산출 — 2모델 × 3회
+for _m in ("claude-sonnet-5", "gpt-5-mini"):
+    for _k in (1, 2, 3):
+        MANIFEST.append((f"data/triage_panel/labels_{_m}_r{_k}.csv",
+                         f"data/triage_panel/labels_{_m}_r{_k}.csv", "copy"))
 
 # 패널 라벨 — T1~T7 파일럿/전수, T1~T6 자기일관성(T7 은 결정론적이라 없다)
 for _t in range(1, 8):

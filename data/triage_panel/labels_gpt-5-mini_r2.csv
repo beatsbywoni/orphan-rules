@@ -1,0 +1,139 @@
+id,label,reason,retried
+T001,externally-directed,"The rule classifies textbooks (national vs. reviewed) for elementary/middle/high schools, which sets obligations/standards for schools, publishers, and related external actors regarding which digital textbooks apply.",False
+T002,internal,"The rule organizes an internal temporary task force within the Ministry of Education, governing composition, duties, staffing, inter-agency cooperation, allowances and operation—it manages administration activities and personnel deployment rather than imposing obligations, standards, sanctions, or entitlements on external private actors.",False
+T003,externally-directed,고시 본문이 특정 출연기관(재단법인 전남교육 꿈실현재단)을 변경지정하고 있어 해당 민간 법인(출연기관)에게 직접적 효력과 의무를 부과하므로 외부대상 지시로 분류됩니다.,False
+T004,externally-directed,텍스트는 교육급여의 선정기준 및 최저보장수준(수급 자격 및 급여 금액)을 규정하여 가구·학생 등 행정기관 외의 개인·가구의 권리·의무(수급대상·지급액)에 직접 영향을 주므로 외부지향적 규칙임.,False
+T005,externally-directed,고시는 유아교육에 대해 국가 및 지방자치단체가 부담하는 비용의 기준(지원기준 연령 및 지원액)을 정하고 있어 행정기관 외의 유치원·보호자 등 외부 행위자에게 재정적 권리·혜택 및 적용 기준을 규정하므로 외부 지향적이다.,False
+T008,externally-directed,"본문은 3~5세 누리과정의 운영·편성, 교사 교수학습·평가 등 유아와 보육·교육기관, 교사 등 행정 외부의 학교·교육기관 및 개인(교사·유아 등)에 적용되는 기준과 요구를 직접 규정하고 있으므로 외부 대상 지시문으로 분류됩니다.",False
+T009,externally-directed,"규칙 본문은 교과용도서의 재료비·인쇄·제조비 산정 방식, 손지율, 전자조판·인쇄·제책료 등 구체적인 계산기준을 제시하여 출판사·발행사 등 행정기관 외부의 사업자들에게 비용·정가 산정 의무와 적용기준을 직접 규정하고 있으므로 외부 대상에 명시적으로 적용됩니다.",False
+T010,externally-directed,"The rule sets substantive requirements and entitlements that apply to teachers and external training institutions (e.g., which institutions may offer credit-bearing courses, how teacher training hours and degrees/certificates are converted to credits, and documentation and promotion-list crediting procedures), thus binding actors outside the issuing administration.",False
+T011,externally-directed,훈령 본문은 교육공무원(개인) 및 지방자치단체 예산으로 보수가 지급되는 직원 등의 명예퇴직수당 지급대상·신청절차·지급방법 등을 구체적으로 규정하여 행정기관 외의 개인(공무원 개개인)에게 권리·의무를 부과하므로 외부지향적이다.,False
+T013,internal,"본 규정의 적용범위와 모든 조문은 교육부, 시·도교육청 및 그 소속기관·하급교육행정기관 등 교육행정기관의 공문서 관리 및 내부 절차에 관한 것으로, 외부(민간 학교 운영자, 학부모, 일반 개인 등)에 대한 직접적인 의무·권리·제재를 부과하지 않음.",False
+T014,externally-directed,규정은 기업·공공연구기관·대학 등 외부 기관을 인증대상으로 규정하고 인증요건·심사절차·인증·인증마크 공개 등 외부 행위를 직접 규율하므로 외부주체를 대상으로 한다.,False
+T015,internal,"규정은 교육데이터전략위원회의 설치·운영, 위원 구성·임기·회의·실무위원회 등 행정 내부의 조직·운영 절차를 규정하고 있어 주로 행정기관(교육부) 내부 업무를 조직하는 내용이며, 외부 민간 주체에게 직접적인 의무·권리·제재를 부과하지 않음.",False
+T016,externally-directed,"규정은 자문단 구성(단원 위촉 대상, 연령요건 등), 해촉 사유, 수당지급 등 외부의 개인(청년 단원)에게 직접적인 권리·의무·절차를 규정하므로 외부지향적이다.",False
+T017,externally-directed,"규정은 갈등영향분석·위원회 심의결과의 정책 반영, 협의회 구성과 이해관계인 참여, 민간위원 위촉, 보상·인센티브 등 교육부 업무와 관련한 외부 이해관계자(민간위원, 관계단체, 전문가, 이해관계인 등)에 대한 권리·의무·절차를 직접 규정하고 있으므로 외부 지향적 규정입니다.",False
+T018,internal,"The excerpts are internal administrative forms and procedures (reconsideration request form, proactive-administration immunity application and review forms) governing how entities interact with the Ministry's audit process and internal review procedures; they organize internal handling and paperwork within the administration rather than imposing substantive requirements, sanctions, or entitlements",False
+T019,internal,규칙 전반이 교육부 감사담당 공무원들의 행동기준·절차·책임 등을 규정하여 내부 공무원의 직무 수행과 내부 관리에 관한 내용을 다루고 있어 외부 행위자에게 직접적인 권리·의무·제재를 부과하지 않음.,False
+T021,externally-directed,The guideline prescribes retention periods for personal data and provides a form for individuals to request access/rectification/erasure/processing stop—operative requirements and procedures that bind external data subjects and entities handling personal data outside the ministry.,False
+T022,externally-directed,"규정은 외부위원 위촉·임기·해촉, 교육부 소속기관장 등 외부(기관 및 개인 위원 등)에게 권한·의무(출석통지, 개최요구 제출, 심의결과 반영 등)를 직접 규정하므로 외부 행위자를 대상으로 한다.",False
+T023,externally-directed,"규정은 고문변호사 및 소송대리인 위촉·위임, 자격·금지행위, 보수 지급, 공개 등 외부 변호사(개인·법인)에게 직접 적용되는 요건과 절차를 규정하고 있어 외부 행위자를 구속한다.",False
+T024,externally-directed,"규정 본문이 운영기관(교육부 소속·위탁기관 등) 및 부서·담당자에게 데이터 품질관리의 의무와 절차(표준 적용, 통보·통지 의무, 시정조치 등)를 직접 부과하고 있어 외부(행정기관 외부기관 포함) 행위자를 구체적으로 규율합니다.",False
+T025,externally-directed,"지침 본문과 첨부 계약서·동의서·경고장 등은 교육부와 외부 개인·기관(저작자, 제공기관, 이용자 등) 간의 권리·의무(저작권 양도·이용허락, 보증·면책, 개인정보 제공, 경고 발송 등)를 직접 규정하고 있어 외부 행위자에게 부담·권리를 부과한다.",False
+T026,externally-directed,"규칙은 공무국외출장의 허가기준, 출장자 선정, 출장경비 부담 및 외부 기관과의 협의 등 외부 행위자(개별 공무원·기관 및 비용부담 기관 등)에 대한 권리·의무와 절차를 직접 규정하고 있어 외부 향한 규제성을 가진다.",False
+T027,externally-directed,"The rule directs reporting, prosecution, and disciplinary procedures affecting individual public servants (duties, sanctions) and instructs universities and public institutions to adopt implementing guidelines, thereby imposing requirements on external entities and individuals.",False
+T028,externally-directed,"The rule prescribes standards, prohibitions, disciplinary sanctions, and payment limits that apply to individual public servants (and interactions with external parties), thereby imposing obligations and entitlements on persons outside the issuing administration as individuals.",False
+T029,internal,"The excerpts (forms and procedures for receiving, recording, and processing public-interest reports within the Ministry of Education) organise the ministry's internal handling of whistleblower complaints and do not, by their text, impose requirements, sanctions, standards, or entitlements on external private actors.",False
+T030,externally-directed,"The rule prescribes disciplinary sanctions and obligations (reporting, recusal, restrictions) for public officials and sets sanctioning standards that affect individuals outside the issuing body (public servants as legal persons), so it directs actors external to internal administrative organization.",False
+T031,externally-directed,"지침은 참여부처, 주관부처·협력부처, 관계기관, 전문기관 등 중앙행정기관 및 관련 기관의 의무·협조·지정·지원·보고·우대(예산반영·포상) 등 외부 행위자를 직접 규정하므로 외부지향적이다.",False
+T032,externally-directed,"규정 본문이 보조사업(보조금) 수급자·사업명칭·카드 사용제한 업종 등 외부의 개인·기관(지자체, 단체, 기업, 수혜자 등)에 대한 요건·제한·관리기준을 직접 규정하고 있으므로 외부대상 지시문서임.",False
+T033,externally-directed,"규칙 본문이 국민 및 공무원이 제출하는 제안의 접수·심사·채택·시상 등 절차와 보상(포상금, 상품권, 장관표창, 공무원 특별승급 등)을 직접 규정하여 교육부 외의 국민·공무원(개인)에게 권리·의무 및 이익을 부여하거나 영향을 미치므로 외부 지향적이다.",False
+T034,externally-directed,"지침은 시행기관별 자체평가 계획 수립·제출 및 결과보고 의무화, 평가절차·보고·공개·결과 반영 등 교육부 소관 사업 수행 주체(시행부서·기관 등)에 대한 구체적 의무와 요건을 규정하므로 외부(행정기관 외부 또는 개별 기관·주체)에 대한 규율을 포함함.",False
+T035,externally-directed,"규정은 위원회가 민간위원을 위촉하고 이해관계인 출석·자료제출을 요구하며 외부 기관과 합동회의를 구성하는 등 민간인·타 기관·부서장 등 행정조직 외부의 행위와 의무(자료제출, 출석·의견진술 요청, 수당 지급 기준 등)에 직접적 영향을 주므로 외부 지향적이다.",False
+T036,externally-directed,"규정 본문은 관할 공공기관(국립학교·국립대학법인 등) 및 각 처리과의 장, 대출자 등 외부 행위자를 직접 대상으로 소속기록관 설치·운영 의무, 기록물 이관·등록·납본·대출·반납·변상 등 구체적 의무와 권한을 규정하므로 외부 지향적이다.",False
+T037,externally-directed,"규칙 본문이 평가대상(국립대학·국립학교 포함 입찰·제안서 평가 절차), 평가위원 구성·선정, 평가방법·점수 산출, 평가수당 지급 등 외부 기관·개인(사업부서, 입찰참여 업체, 평가위원 등)에 직접 적용되는 요건을 규정하고 있으므로 외부 지향적이다.",False
+T038,internal,"본문은 기관 명칭(교육부→교육인적자원부) 변경 및 내부 규정·위원회 명칭과 직제·직위 표기 수정에 관한 것으로, 외부 행위자에게 직접적 의무·권리·처벌을 부과하지 않고 행정기관의 내부 조직·운영 규정만을 개정하고 있음.",False
+T039,externally-directed,"규칙 본문은 다수의 조항에서 시험과목·자격증 지정, 채용·승진 가점, 학교법인 정관 등 외부 기관(학교·법인·응시자 등) 및 개인(공무원·교원 등)의 지위·권리·의무에 영향을 주는 기준과 명칭을 변경하므로 외부행위자를 규율합니다.",False
+T040,internal,"The rule governs how the Ministry of Education processes complaints and organizes internal offices, duties, procedures, personnel training, inspections, and disciplinary measures for ministry staff handling 민원; it regulates the administration's internal operations rather than imposing requirements, sanctions, or entitlements on external private actors or individuals in their personal legal status.",False
+T041,externally-directed,"The rule prescribes reporting forms and procedures for interactions with foreigners, which impose reporting obligations on personnel (outside the issuing body or on individuals in their legal position) and thus directs actors beyond internal administrative organization.",False
+T042,internal,"본 훈령은 교육부 내부의 법제업무 처리절차(주관부서 지정, 입법계획 수립·수정, 법령안 작성·심사·결재·입법예고 등)를 규정하여 행정기관의 내부 운영을 조직하는 내용으로, 외부의 개인·민간기관에 대한 법적 의무·권리·제재를 직접 부과하지 않습니다.",False
+T043,externally-directed,"문서에는 비밀·암호자재 취급인가 요청서·인가증·인가대장 등 양식과 인가·발급 절차가 포함되어 있어, 교육부 외부의 개인(인가를 요청하는 직원 등) 또는 외부 행위자에게 인가·요건을 부과하므로 외부 대상 규정으로 보인다.",False
+T044,externally-directed,"지침은 신고절차, 금품의 인도·반환·폐기, 반환비용 청구 등 외부 신고인·금품 인도자 등 행위자에게 직접 적용되는 절차·요건과 권리·의무(예: 접수증 교부, 반환비용 청구)를 규정하므로 외부대상 지시문건이다.",False
+T045,externally-directed,"규정 본문은 포상금·보상금 지급기준과 신고서식 등을 통해 외부 신고자(개인) 및 부패행위 관련자에게 권리·의무(보상·포상 지급 기준, 신고 절차 등)를 직접 규정하므로 외부대상자를 지향한다.",False
+T046,externally-directed,"규정 본문은 각급학교·교육부 소관 공공기관 등 교육·행정 기관(외부 기관)에 대한 보안관제 의무, 보고·협조·자료제공·예산 분담 등 권리·책무를 직접 규정하고 있으므로 외부 행위자를 구속한다.",False
+T047,externally-directed,규정 전반이 사업에 참여하는 대학·주관기관·참여기관·수행기관 등 외부 기관의 신청·선정·권한·의무·사업비 관리·평가·제재 등을 직접 규정하고 있어 외부 행위자를 구속한다.,False
+T048,externally-directed,"지침은 교육부 및 그 소속기관의 직원(교육부장관 및 소속기관의 장과 고용관계에 있는 자 포함)을 대상으로 적용범위·의무(예: 기관장의 책무, 고충상담창구 설치·운영, 교육·조사·처리 절차 등)을 직접 규정하고 있어 내부 조직 외의 개인(직원 개개인)의 법적 지위와 행위에 영향을 주므로 외부지향적이다.",False
+T049,externally-directed,"규정의 조문들이 시·도교육감, 국립대학교총장, 국립학교장 등 교육부 소관 외부 기관 및 소속 공무원에게 권한·의무(재산관리, 사용허가·취소, 용도폐지 등)를 부여하고 있으므로 외부 행위자에게 직접적 구속력을 가진다.",False
+T050,externally-directed,"규정은 교육부 소관 기타공공기관에 대한 평가기준·보고·자료제출·제재·지원 등(예: 경영실적보고서 제출기한, 자료제출·출석요구, 인사조치 요청, 행재정 지원 및 표창 등)을 직접 규정하여 행정기관 외의 공공기관 및 그 기관장 등 외부 행위자를 구속·권리부여하고 있다.",False
+T051,externally-directed,지침 본문은 침해사고 대응·예방·보고·관리 절차와 제한구역·장비도입 등 구체적 고려사항을 제시하여 교육기관·운영주체 등 행정기관 외부의 조직들이 준수·적용해야 할 기준을 직접 규정하고 있으므로 외부지향적이다.,False
+T053,internal,규정은 교육부 소관 회계직공무원의 관직지정·임면권 위임 등 행정조직 내부의 직제·임명 절차를 규정하여 기관 내부의 업무 운영을 다루고 있으므로 내부지향적 규칙임.,False
+T054,externally-directed,"The rule establishes the appointment, duties, selection qualifications, term, and removal conditions for '시민감사관' (external citizen auditors) and includes forms and requirements (e.g., requests for documents, confidentiality oath) that bind persons appointed and external institutions, so it directs individuals and entities outside the administration.",False
+T055,externally-directed,"규정은 위원회 심의대상에 민간투자사업, 교육시설 안전 지정 등 외부 기관·사업자(예: 민간투자사업 운영자, 학교·시설 관련 기관)와 관련된 사항을 규정하고 외부 전문가 위촉, 자료·협조 요청, 수당 지급 등 외부 행위자에게 영향을 미치는 내용을 직접 명시하므로 외부지향적이다.",False
+T056,internal,규정은 교육부 예산집행심의회의 구성·운영·절차 등 교육부 내부 조직의 운영을 정하고 있어 주된 대상이 기관 내부 구성원 및 소속기관의 설치·운영 권한(기관장 등)에 관한 내부 행정조직 규정이므로 내부지향적이다.,False
+T057,externally-directed,규정은 교육부 소속 기관에 근무하는 공무직근로자의 채용·근로조건·징계(해고·정직·감봉 등) 및 정원 등을 직접 정하여 개인(공무직 근로자)의 법적 지위와 의무·제재를 규정하므로 외부 지향적이다.,False
+T058,externally-directed,"규정은 교육부와 소속기관의 회계관계공무원(개인)에 대한 재정보증 설정·한도·보험료 납부·변상 등 개인의 법적 의무·권리(보증 설정, 변상책임 등)를 직접 규정하므로 외부(개인) 대상 지시를 포함함.",False
+T060,externally-directed,규정은 교육부 및 그 소속기관 공무원의 인사관리에 따른 경력 인정 및 환산율을 정하여 개인 공무원의 처우(승진·임용 등)에 직접적인 법적 효과를 미치므로 외부 행위자(개인 공무원 등)를 대상으로 한다.,False
+T061,internal,본문은 교육부 및 소속기관의 일상감사 절차와 서식(내부 감사 지침·대장·통보서 등)을 규정하여 행정기관의 내부 업무 운영을 조직하고 있어 외부 행위자에게 직접적인 법적 의무·기준·권리·제재를 부과하지 않음.,False
+T062,internal,"규정은 교육부 내부의 자체평가위원회 구성·운영, 부서 간 협조, 위원 인사·임기·보안·수당 지급 등 교육부 조직의 내부 운영을 규정하고 있으며 외부 민간위원을 위촉하는 절차는 있으나 규정의 직접적인 대상은 교육부의 내부 평가 기구 운영에 한정됨.",False
+T063,externally-directed,"The rule prescribes hiring, working conditions, performance evaluation, and retirement procedures for non-civil-servant workers at national schools — these are requirements and standards that bind individual workers (external actors) and the schools that employ them.",False
+T064,externally-directed,신청서 양식과 지원·취소·환수 및 불이익 처분 등은 교육부 소속 공무원(개인)을 대상으로 지원과 권리·의무를 규정하므로 행정조직 외부의 개인(공무원 개인의 법적 지위)에 직접 작용합니다.,False
+T066,internal,"규정 본문은 교육부 내부의 정보공개 처리 기준과 비공개 대상 항목을 규정하여 행정기관 내부 업무 절차를 조직·운영하는 내용으로서, 외부 개인·기관의 권리·의무·벌칙 등을 직접 부과하지 않음.",False
+T067,externally-directed,"지침 본문이 각급기관 및 제품의 도입·등재 요건(예: 제품별 인증·검증 요구, 암호모듈 탑재 조건 등)을 규정하여 행정기관 외부의 제품 제조사·공급자 및 도입기관에 실질적 의무를 부과하므로 외부지향적이다.",False
+T068,internal,"규정 내용은 교육부 내부의 정책실명제 운영, 책임관·심의위원회 구성·절차 및 내부 공개·점검 등 교육부와 그 소속 기관의 업무 운영에 관한 조직 내부 행정절차를 규정하고 있어 외부 행위자에게 개별적 권리·의무·제재를 부과하지 않음.",False
+T069,externally-directed,"The text prescribes application forms, researcher selection methods, contracting/selection reasons, budget and proposal requirements for policy-research projects—procedural requirements that bind external researchers/institutions and specify how external contractors are designated and managed.",False
+T071,internal,본문은 중앙사고수습본부의 구성·운영과 내부 조직도 및 실무반 편성·임무 등 행정기관 내부의 조직운영 절차를 규정하고 있어 외부 행위자에게 의무·권리·제재를 부과하지 않음.,False
+T072,internal,"규정의 적용 대상과 내용(교육부 및 그 소속기관의 정보화업무 추진, 조직 구성·운영, 계획 수립 등)은 행정기관 내부의 조직·업무 절차를 규정하고 있어 외부 행위자에게 직접적인 의무·권리·제재를 부과하지 않음.",False
+T073,externally-directed,"규정은 외부위원 위촉, 외부기관(교육부 소속기관 포함)의 준용 또는 자체 규정 수립 허용, 처리부서·출석통지 및 출석의무 등 외부 개인·기관(예: 외부위원, 처리부서, 출석대상 부서 등)에 대한 권리·의무를 직접 규정하므로 외부 지향적임.",False
+T074,externally-directed,"훈령 본문이 교육부 소관 건설사업의 대상, 심의대상 기준, 집행기관의 조정요구 및 사업관리 의무 등 교육부 밖의 집행기관·공공기관·사업주체에게 직접적인 의무와 절차를 규정하므로 외부 지향적이다.",False
+T075,externally-directed,"지침 본문이 인증서 발급 대상, 신청자 신원확인, 등록기관·원격등록기관의 의무 등 교육부 외부의 기관·개인(학교, 교직원, 등록기관 등)에 직접 적용되는 요건과 절차를 규정하고 있어 외부행위를 구속합니다.",False
+T076,externally-directed,"규정은 학교 설립자·경영자 또는 학교의 장에게 행정처분(학생 모집정지 등)에 관한 사항을 심의하도록 하는 기능을 규정하고 있으며, 위원 위촉·운영 등이 외부전문가와 관련되어 외부 행위자들에게 영향을 미치므로 외부대상성을 가진다.",False
+T077,externally-directed,지침 본문이 교육시설의 안전등급·기술자격 인정기준·보고서 기재사항·위험표지 설치요령 등 외부 학교·시설 관리자 및 기술인력에게 직접 적용되는 요구·기준을 규정하고 있으므로 외부대상 지시임.,False
+T078,externally-directed,"본 규칙은 교육시설의 장, 설계자 등 교육시설 운영자·설계자에게 점검·보고·내진설계·구조안전 확인 및 조치 의무를 직접 부과하므로 외부 행위자를 규율합니다.",False
+T079,externally-directed,"규정은 위원 위촉·해촉, 위원 임기, 회의 소집·의결, 수당 지급 대상 등 개인(위촉위원, 전문위원, 관계전문가 등) 및 교육감 등 행정외부 주체의 지위와 권한을 직접 규정하므로 외부 대상에 대한 규율을 포함함.",False
+T080,externally-directed,"The rule includes application forms and procedural requirements ( 입주 신청서, 변경·퇴거 신청서, 서비스 전환 요청서 ) and sets conditions for external institutions to apply for and use the 교육정보재해복구센터, thereby imposing obligations on actors outside the issuing administration.",False
+T081,externally-directed,"규정이 교육관련기관(시·도교육청, 단위학교 등)과 외부기관·신청인 등에게 정보·통계의 제공·협의·준수사항(자료 제공 조건, 협의·승인 절차 등)을 직접 요구하고 있어 행정기관 외부 행위자에게 의무를 부과함.",False
+T082,externally-directed,"규정 본문이 교육관련 기관들의 참여 의무, 협의회 참석 응답 의무, 기관의 시행 책임 및 분담금·출연금 등 재원부담을 규정하여 교육부 외부의 기관과 직원들에게 직접적 의무와 재정적·운영적 영향을 부과하고 있으므로 외부지향적임.",False
+T083,internal,"The rule governs the establishment, composition, staffing, internal operations, and inter-agency cooperation of an internal support unit within the Ministry of Education and addresses requests for personnel or information to other public bodies; it organizes administration rather than imposing requirements, standards, sanctions, or entitlements on private external actors or individuals in their pe",False
+T084,externally-directed,"본문은 연구기관, 참여연구자(연구책임자 및 외국인 포함), 외부입주기관 등 행정기관 외부의 기관·개인에 대한 준수의무, 징계·조치 및 보안절차 등을 직접 규정하고 있으므로 외부지향적이다.",False
+T085,externally-directed,"규정의 대부분 조항이 고등교육기관, 학생(장학생) 및 한국장학재단 등 행정조직 밖의 주체들에게 의무·권한·제재·지원 기준(장학생 선정·장학금 지급·환수·참여제한 등)을 직접 부과하고 있어 외부 대상을 규율함.",False
+T086,externally-directed,"규정은 학습모듈 개발·개선·폐지 대상 직무 선정, 전문기관 지정(한국직업능력연구원 및 위탁·공개모집 절차), 위원회 구성·위원 위촉·해촉 등 외부 기관(직능연 등)과 전문가들을 직접 지정·규정하므로 외부 행위자에게 의무·지위를 부과함.",False
+T087,externally-directed,규칙은 국공립대학 및 그 교원·조교·시간강사 등 외부 행위자에 대한 지급대상·지급기준·신청·제재(지급대상 제외 등) 등을 직접 규정하고 있어 행정조직 외부의 개인·기관에 구속력을 분명히 둠.,False
+T088,externally-directed,"규정은 대학(국립대학), 대학의 장, 교원·직원, 권한관리자 등 외부 기관 및 개인의 권한, 의무(접속방법, 사용권한 부여·폐지, 증명서 발급, 개인정보 보호 등)를 직접 규정하고 있어 외부 행위자를 구속한다.",False
+T089,externally-directed,"규정 본문은 대학(국립대학), 대학 직원·교원, 운영기관(한국사학진흥재단) 등 행정조직 외부의 주체들에게 권한·의무(접속방법·사용권한 부여·백업·비밀유지 등), 예산분담과 인력배치 등을 직접 규정하고 있어 외부 행위자에게 적용됩니다.",False
+T090,internal,규정은 교육부 소속의 선정위원회 구성·운영 등 내부 행정조직과 위원의 임명·해촉·수당 등 위원회 운영절차를 규정하므로 주된 대상이 행정기관의 내부 조직과 위원(공무원 포함) 운영에 한정됨.,False
+T091,externally-directed,"지침은 발행자·편찬기관·집필진 등 민간 발행자와 교육기관 및 일반국민에게 교과용도서의 수정·보완 절차, 승인요건 및 보고·공표 의무 등을 직접 규정하므로 행정기관 외부 행위를 구속하고 있다.",False
+T092,externally-directed,"규정은 위원회 구성·임명·위원의 임기·해촉, 민간위원의 수당 지급 등 외부 위원(민간인)에게 직접 적용되는 임명·권리·의무 및 보수 관련 규정을 포함하므로 외부 행위자를 규율합니다.",False
+T093,externally-directed,"예규의 조문들은 기간제교원(외부 대상자)의 봉급 지급 기준, 적용대상(기간제교원), 경력 합산 신청 절차 및 봉급 제한 등을 직접 규정하여 교육행정 외부의 개인(교원)의 권리·의무에 영향을 미치므로 외부지향적이다.",False
+T094,externally-directed,규정 본문은 순회교원 및 복식수업담당교원 등 교원 개인에게 수당 지급액과 지급대상을 직접 규정하여 교육기관 밖의 개인(교원)의 법적 지위상 수당 지급 의무를 부과하므로 외부지향적이다.,False
+T095,externally-directed,"규칙 본문은 대학·사업단·학생·교원 등 대학 외부 행위자에 대한 사업비 사용 용도, 협약 조건, 지원·지급 및 의무(사업 수행·지원 조건 등)를 직접 규정하여 외부 주체의 권리·의무를 설정하고 있다.",False
+T096,externally-directed,The rule sets procedures and forms for selecting and favoring individual teachers (외부인인 ‘수상자’ 및 추천자 등) and thus imposes requirements on persons and organizations outside the issuing administration.,False
+T097,externally-directed,규정은 시험 응시자(외부 개인)에 대한 합격기준·응시절차 및 과목별 인정 등 외부 행위자에게 직접 적용되는 요건을 규정하고 있으므로 외부지향적이다.,False
+T098,externally-directed,규칙 본문이 국민·다중이용시설·행정기관·경찰관서 등의 행동요령과 방송·사이렌 방법 등 외부 행위자에게 준수할 사항을 직접 규정하고 있어 외부대상에 대한 지시를 포함함.,False
+T099,externally-directed,"The form and provisions set application requirements, required attachments, and designation procedures for external entities seeking designation as lifelong education institutions for people with developmental disabilities, thereby imposing obligations and entitlements on outside organizations.",False
+T100,externally-directed,"규정은 보육활동보호센터가 충족해야 할 요건(전문인력·시설, 상담 프로그램 등), 연수·자문·기록 공개, 평가 및 보고 의무 등 센터 운영에 대해 외부(센터 운영자 및 관련 기관)에 대한 구체적 의무와 기준을 직접 부과하고 있으므로 외부 지향적입니다.",False
+T101,internal,규칙은 교육부 소속기관(국립국제교육원)에게 보조금 교부·관리 사무를 위임하는 내부적 조직·업무 배분에 관한 내용으로 외부의 개인·민간기관에 대한 의무·권리·제재를 직접 규정하지 않음.,False
+T102,externally-directed,"Rule sets application, reporting, recognition, and cancellation requirements for corporate training institutions (사내기술대학(원)) and duties toward the Ministry of Education, thus imposing obligations on external entities (companies) outside the issuing administration.",False
+T103,externally-directed,"The rule requires private kindergartens (사립유치원) and their operators to record and publish staff salary and allowance standards, follow procedures for rule changes, and be inspected by the supervising authority—i.e., it imposes obligations on external institutions and individuals (유치원의 장, 교직원) outside the issuing administration.",False
+T104,externally-directed,"서식과 작성요령이 사립학교 및 사립대학(법인, 학교)과 그 교원 임용보고 제출 의무를 규정하므로 행정기관 외부의 학교·교원 등 외부 주체에 직접 적용된다.",False
+T105,externally-directed,"규정은 참여기관의 구성, 참여기관 소속 직원의 회의 참석 의무, 참여기관의 협의사항 시행 책임, 수당·여비 지급 대상 등을 명시하여 교육부 외의 기관 및 개인(연구원·전문가 등)에 직접적인 권리·의무와 혜택을 규정하고 있으므로 외부 지향적이다.",False
+T107,externally-directed,규정은 수석교사(개인 공무원)의 연구활동비 지급액·지급일 등 개인의 급여성 처우를 직접 규정하고 있어 행정조직 외부(개인 공무원)의 법적 지위에 영향을 미친다.,False
+T108,externally-directed,"The rule sets evaluation criteria and requirements for financial institutions to be designated as provincial education treasury banks (금고), directly binding external banks/cooperatives and affecting their entitlements and obligations.",False
+T109,externally-directed,규칙 본문이 시·도 및 시·군·자치구(지방자치단체)에게 고등학교 무상교육 경비의 전출 의무와 부담비율(각 지방자치단체의 부담비율과 전출 시기·정산 방법 등)을 직접 규정하므로 외부(지방자치단체) 행위에 대한 요구를 포함함.,False
+T110,externally-directed,"문서 본문이 민원(증명서·성적증명 등) 신청·처리 대상과 절차(신청서 양식, 처리기관·교부기관 직인 등)를 규정하여 외부 민원인(학생·졸업생 등)과 민원 처리 주체들에게 권리·의무(신청·발급 등)를 직접 부과하므로 외부지향적이다.",False
+T111,externally-directed,"규정의 내용이 어린이집 원장·보육교사 등의 자격검정 절차, 자격인정 기준, 자격증 발급 업무 등 외부 행위자(원장·교사 및 자격증 발급 대상)를 직접 규율하므로 외부지향적이다.",False
+T112,externally-directed,본문은 어린이집 원장과 보육교사의 자격기준 중 한국보육진흥원 직원의 경력인정 기준을 규정하여 보육기관·종사자 등의 법적 자격요건에 직접 영향을 미치므로 외부 대상에 대한 규율이다.,False
+T113,externally-directed,"지침 본문은 연구자, 대학 등, 전문기관 등의 역할·책임·적용대상, 연구부정행위의 범위·처리절차 및 제보자·피조사자의 권리보호 등 외부 주체들에게 준수해야 할 의무와 권리를 직접 규정하고 있다.",False
+T114,externally-directed,"The rule prescribes who (individual nutrition teachers at schools) is eligible for allowance payments, sets duties they must perform, record-keeping and retention obligations for schools, and payment amounts — all binding external actors outside the issuing administration.",False
+T115,externally-directed,"훈령은 유아교육 및 보육 관련 단체·교직원 단체·학부모 단체·연구기관 등 외부 인사들의 위촉·추천 및 권한·의무(위원회 참여, 의견수렴 등)를 규정하므로 행정조직 외부 행위자에게 직접적 규율을 가한다.",False
+T116,externally-directed,"규칙은 외국박사학위를 신고해야 하는 절차(신고방법, 제출서류), 신고의 취소와 정보시스템 구축·관리 등 외부 개인(신고자)과 기관에 직접적 의무와 절차를 규정하고 있어 외부 행위자를 규율합니다.",False
+T117,externally-directed,"The rule sets procedures for applying increased administrative sanctions and fines under the Early Childhood Education Act, which directly determine sanctions and burdens for external actors (e.g., childcare providers) outside the issuing administration.",False
+T118,externally-directed,"본문은 유치원 교육과정(누리과정)의 운영·편성, 교수·학습, 평가 기준과 유아 대상 목표 등을 규정하여 유치원, 교사, 유아 및 학부모 등 행정기관 외부의 주체들에게 의무·기준을 설정하므로 외부지향적이다.",False
+T119,externally-directed,규칙은 교육부와 그 소속기관에 두는 공무원별 별도정원(직급별 정원 수)을 직접 규정하여 행정기관 밖의 조직(교육부 소속기관 등)에 대한 인원·운용 기준을 정하고 있으므로 외부지향적이다.,False
+T120,internal,훈령은 국립학교 등의 '별도정원'을 설정하여 행정기관 내부의 정원 배치(공무원 직급별 정원수)를 규정하고 있어 조직 내부의 인력 운영을 다루므로 내부지향적 규정이다.,False
+T121,externally-directed,규칙 본문은 대학(민간·공공 대학 포함)에 대한 모집유보 신고·기준·기간·해제 등 절차와 의무를 직접 규정하여 행정기관 외부의 기관(대학)과 개별 행위(입학정원 모집 여부)에 구속력을 부과하므로 외부 지향적이다.,False
+T122,externally-directed,"규정이 관계 행정기관, 공공기관, 정부 유관단체, 민간단체 및 기업 등의 장에게 소속 임직원의 파견 또는 겸임을 요청할 수 있도록 규정하고(제5조), 파견 대상에 민간기업 등 외부 주체를 직접 포함하고 있어 행정기관 외부 행위자에게 의무·요청을 부과한다.",False
+T123,externally-directed,"규정은 관계 행정기관·공공기관·정부 유관단체·민간단체 및 기업 등의 장에게 소속 임직원의 파견 또는 겸임을 요청할 수 있도록 하고(제5조), 직원 구성에 외부 기관과 민간기업 파견원을 포함시키며(제4조·제5조), 또한 공무원의 인사상 우대·복귀 절차 등 개인의 법적 지위에 영향을 주는 규정을 포함하므로 외부 행위자들에게 직접적인 의무·절차를 규정하고 있습니다.",False
+T124,externally-directed,"규정은 공무원 정원, 파견·겸임 요청, 민간기업 등 외부 기관의 직원 파견을 요청할 수 있는 권한과 파견 대상(공공·민간 기관 등)을 명시하여 행정기관 외부의 개인·기관에 대한 의무·요청을 규정하므로 외부 지향적이다.",False
+T125,externally-directed,"The form and provisions apply to applicants (individuals seeking a qualification/renewal) and set documentary requirements and fees for issuance of a childcare teacher qualification for disabled young children, thereby imposing requirements and entitlements on external persons.",False
+T126,externally-directed,"규칙 본문이 대학(외부 기관)에게 3년제 학과 설치·보고 의무, 설치기준(전임교원 확보율 등) 및 정원 조정 등을 직접 규정하여 외부 행위자를 구속하므로 외부 지향적이다.",False
+T127,externally-directed,"규정 본문이 시행기관, 참가자, 인턴기업, 중개업체 등 교육부 외의 기관 및 개인(참가자)의 선발, 의무, 지원금 환수, 보고의무 등을 직접 규정하고 있어 외부 행위자들에게 권리·의무·제재를 부과하고 있습니다.",False
+T128,externally-directed,"지침은 지방교육행정기관과 각급학교(외부 기관들)의 업무 분류·관리, 단위과제 지정·변경 절차 및 담당자 권한 등을 직접 규정하여 행정기관 및 학교 등 발행 기관 외부의 행위와 의무를 규정하므로 외부지향적이다.",False
+T129,externally-directed,규정 본문이 지방교육행정기관 외부의 신고자(개인·단체 등)에 대한 신청·접수·처리·보상(표창·예산성과금) 절차와 의무를 직접 규정하므로 외부 행위자를 구속·권리부여함.,False
+T131,externally-directed,"The rule sets substantive requirements and procedures for schools, vocational training institutions, and employers (e.g., required course components, minimum field-training durations, contract and labor-contract obligations), thus imposing obligations on external actors outside the issuing administration.",False
+T132,externally-directed,"The notice defines fields and technologies for setting entrance quotas (입학정원 기준) which applies to universities, departments, and other external educational institutions and thus imposes standards on actors outside the issuing administration.",False
+T133,externally-directed,"The text prescribes national education curriculum standards, required course structures, time allocations, and operational requirements for adult literacy programs that must be organized and operated by education providers (education기관) and thus impose requirements on actors outside the issuing administration.",False
+T134,externally-directed,"The text sets a basic curriculum ('기본 교육과정') which, by its nature, prescribes standards for schools and students outside the issuing agency, so it directs external actors (schools/teachers).",False
+T135,externally-directed,본문은 교과용도서의 구분(국정도서·검정도서)을 규정하여 교과서 출판사 등 외부 행위자들에게 적용되는 기준을 설정하므로 외부지향적이다.,False
+T136,externally-directed,"The provision abolishes a classification rule for 교과용도서 (textbooks), which by its nature affects external actors (schools, publishers, and others dealing with 교과용도서) and thus changes requirements applicable outside the administration.",False
+T137,undecidable,본문에 양식 제목(취학아동명부)만 있고 실제 조문·적용대상·지시사항이 포함되지 않아 외부 대상 여부를 판단할 수 없음.,False
+T138,externally-directed,"훈령 본문이 시·도교육청, 유관기관, 평가대상부서(교육부 사업부서) 및 위원회 위원 등 외부 행위자에게 자료제출·협조 의무, 평가 결과에 따른 예산감액·지원중단 등 불이익·혜택 반영, 수당지급 및 표창 등 권리·의무와 제재를 규정하므로 외부 행위자에게 직접 지시·효과를 미침.",False
+T139,externally-directed,"The rule prescribes grading scales, recordkeeping and retention requirements for 교육훈련기관 and specifies documents and formats that external education providers must keep, thus imposing obligations on actors outside the issuing administration.",False
+T140,externally-directed,"The regulation's text includes application, selection, notification, and entitlement provisions for individual applicants (external persons) regarding issuance and use of lifelong education vouchers, thus binding/affecting actors outside the issuing agency.",False
+T141,externally-directed,본문은 평생학습계좌제 학습과정의 평가기준과 인정서 양식을 규정하여 민간 기관·강사·학습과정 등 외부 주체의 인증·기준 충족 여부를 직접 규정하므로 외부대상 지시에 해당함.,False
+T143,externally-directed,"The rule sets duties and standards for external entities (education entrustment institutions) and obligations toward schools and individual asbestos safety managers (training hours, attendance management, reporting to the Minister), thus binding actors outside the administration.",False
+T144,externally-directed,"The rule sets seismic design standards for school facilities, which bind schools and entities responsible for those facilities (external actors) by prescribing technical requirements.",False
+T145,externally-directed,지침은 교직원·학교장·학생·보호자 등 행정기관 외의 개인 및 학교(외부 기관)에 대한 대응절차·보고·이송 및 공제급여 신청 안내 등 책임과 절차를 직접 규정하고 있어 외부 행위자에게 의무를 부과한다.,False
+T146,externally-directed,"The rule prescribes detailed criteria and application order for imposing increased fines (과태료의 가중처분) under the Act on Establishment/Operation of Hagwon, which directly binds and affects external actors (private hagwons/operators) by determining sanctions against them.",False
+T147,externally-directed,"The standard curriculum (표준교육과정) sets educational standards that bind schools and other external education providers and affects students/private institutions, so it directs actors outside the issuing administration.",False
+T148,externally-directed,"규칙 본문은 학력·자격·교육훈련 이수결과 등의 상호호환 적용 기준을 중앙행정기관의 장에게 마련·적용하도록 요구하고, 민간의 학력·자격·교육훈련 등 외부 행위주체들의 지위와 상호연계에 영향을 미치므로 외부 행위자를 규율한다.",False
+T149,externally-directed,"고시는 공동캠퍼스로 위치 변경하는 대학이 따라야 할 신청·승인 요건, 교사(시설) 기준면적 등 외부 대학들에 대한 설치·운영 기준과 절차를 직접 규정하고 있어 외부 행위자를 구속한다.",False
