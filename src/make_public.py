@@ -92,6 +92,7 @@ MANIFEST: list[tuple[str, str, str]] = [
     ("src/make_figures.py",            "src/make_figures.py",            "copy"),
     # 이 번들 자신을 만든 코드 — 무엇이 어떻게 스크럽됐는지 독자가 확인할 수 있게
     ("src/make_public.py",             "src/make_public.py",             "copy"),
+    ("src/make_deposit.py",            "src/make_deposit.py",            "copy"),
 
     # ── 라벨 (Braun 2024 보고 권고에 따라 전량 공개) ──────────────────────────
     ("data/oracle_labeled_v2.csv",          "data/labels/oracle_labeled_v2.csv",          "copy"),

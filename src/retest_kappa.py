@@ -48,11 +48,31 @@ def as_set(v):
 
 
 # ── 통계 ────────────────────────────────────────────────────────────────
-def agreement_stats(pairs, label):
-    """pairs = [(원본, 재검사)]. 관측일치도·Cohen κ·PABAK·Gwet AC1 을 낸다."""
+def bootstrap_kappa_ci(pairs, reps=2000, seed=20260901):
+    """등록문이 약속한 부트스트랩 95% CI (κ). 양쪽 단일범주라 κ 가 정의되지 않는 재표본은 건너뛴다."""
+    import random
+    rnd = random.Random(seed); n = len(pairs); ks = []
+    for _ in range(reps):
+        smp = [pairs[rnd.randrange(n)] for _ in range(n)]
+        po = sum(1 for a, b in smp if a == b) / n
+        cats = {a for a, _ in smp} | {b for _, b in smp}
+        ca, cb = Counter(a for a, _ in smp), Counter(b for _, b in smp)
+        pe = sum((ca[c] / n) * (cb[c] / n) for c in cats)
+        if abs(1 - pe) > 1e-12:
+            ks.append((po - pe) / (1 - pe))
+    if not ks:
+        return None
+    ks.sort(); return (ks[int(0.025 * len(ks))], ks[max(int(0.975 * len(ks)) - 1, 0)], len(ks))
+
+
+def agreement_stats(pairs, label, intersection=False):
+    """pairs = [(원본, 재검사)]. 관측일치도·Cohen κ·PABAK·Gwet AC1·부트스트랩 CI 를 낸다.
+    intersection=True 이면 집합 라벨을 '교집합이 있으면 일치' 로 채점한다 (등록문의 L2 기준)."""
     n = len(pairs)
     if n == 0:
         return None
+    if intersection:
+        pairs = [(a, a if (a & b or (not a and not b)) else b) for a, b in pairs]
     po = sum(1 for a, b in pairs if a == b) / n
     cats = sorted({a for a, _ in pairs} | {b for _, b in pairs})
     ca, cb = Counter(a for a, _ in pairs), Counter(b for _, b in pairs)
@@ -66,7 +86,7 @@ def agreement_stats(pairs, label):
         pi = {c: (ca[c] + cb[c]) / (2 * n) for c in cats}
         pe_g = sum(pi[c] * (1 - pi[c]) for c in cats) / (q - 1)
         ac1 = None if abs(1 - pe_g) < 1e-12 else (po - pe_g) / (1 - pe_g)
-    return {"label": label, "n": n, "agree": po, "kappa": kappa, "pabak": pabak,
+    return {"ci": bootstrap_kappa_ci(pairs), "label": label, "n": n, "agree": po, "kappa": kappa, "pabak": pabak,
             "ac1": ac1, "n_cats": q, "pe": pe,
             "disagreements": [(i, a, b) for i, (a, b) in enumerate(pairs) if a != b],
             "dist_orig": dict(ca), "dist_retest": dict(cb)}
@@ -83,7 +103,9 @@ def block(st, ids):
     s = (f"  n = {st['n']} · 관측일치도 {st['agree']*100:.1f}% "
          f"({st['n']-len(d)}/{st['n']})\n"
          f"  Cohen κ = {fmt(st['kappa'])} · PABAK = {fmt(st['pabak'])} "
-         f"· Gwet AC1 = {fmt(st['ac1'])}\n")
+         f"· Gwet AC1 = {fmt(st['ac1'])}"
+         + (f" · κ 부트스트랩 95% CI [{st['ci'][0]:.3f}, {st['ci'][1]:.3f}] (유효 {st['ci'][2]})" if st.get('ci') else " · κ CI: 퇴화(전 재표본 완전일치)")
+         + "\n")
     if d:
         s += "  불일치:\n"
         for i, a, b in d:
@@ -186,8 +208,10 @@ def main():
 
     l1_60 = agreement_stats(pairs(ids_all, "L1_위임인가"), f"L1 ({len(ids_all)}건)")
     l1_58 = agreement_stats(pairs(ids_58, "L1_위임인가"), f"L1 ({len(ids_58)}건, 노출 2건 제외)")
-    l2_60 = agreement_stats(pairs(ids_l2_all, "L2_위임된법형식", True), f"L2 ({len(ids_l2_all)}건, 양쪽 위임)")
-    l2_58 = agreement_stats(pairs(ids_l2_58, "L2_위임된법형식", True), f"L2 ({len(ids_l2_58)}건, 노출 2건 제외)")
+    l2_60 = agreement_stats(pairs(ids_l2_all, "L2_위임된법형식", True), f"L2 정확일치 ({len(ids_l2_all)}건, 양쪽 위임)")
+    l2_58 = agreement_stats(pairs(ids_l2_58, "L2_위임된법형식", True), f"L2 정확일치 ({len(ids_l2_58)}건, 노출 2건 제외)")
+    l2i_60 = agreement_stats(pairs(ids_l2_all, "L2_위임된법형식", True), f"L2 교집합 — 등록 기준 ({len(ids_l2_all)}건)", intersection=True)
+    l2i_58 = agreement_stats(pairs(ids_l2_58, "L2_위임된법형식", True), f"L2 교집합 — 등록 기준 ({len(ids_l2_58)}건, 노출 제외)", intersection=True)
     ids_all, ids_58 = ids_all, ids_58
 
     def setlabel(st):
@@ -195,10 +219,10 @@ def main():
             st[k] = [(i, "|".join(sorted(a)) or "(빈값)", "|".join(sorted(b)) or "(빈값)")
                      for i, a, b in st[k]]
         return st
-    l2_60, l2_58 = setlabel(l2_60), setlabel(l2_58)
+    l2_60, l2_58, l2i_60, l2i_58 = setlabel(l2_60), setlabel(l2_58), setlabel(l2i_60), setlabel(l2i_58)
 
     print("\n=== 9월 재검사 결과 ===\n")
-    for st, ids in ((l1_60, ids_all), (l1_58, ids_58), (l2_60, ids_l2_all), (l2_58, ids_l2_58)):
+    for st, ids in ((l1_60, ids_all), (l1_58, ids_58), (l2i_60, ids_l2_all), (l2i_58, ids_l2_58), (l2_60, ids_l2_all), (l2_58, ids_l2_58)):
         print(st["label"]); print(block(st, ids))
 
     sent = sentence(l1_60, l1_58, l2_60, a.completed)
@@ -214,7 +238,8 @@ def main():
         "G0106·G0136 은 docs/22 §4.3 에서 식별자가 저자에게 노출된 이력이 있어 "
         "(편차 로그 P-2026-08-20-5), 전체 60건과 이 둘을 제외한 58건을 모두 보고한다.\n\n"
         "## L1 (위임/인용/판단불가)\n\n```\n" + block(l1_60, ids_all) + block(l1_58, ids_58) +
-        "```\n\n## L2 (법형식, 집합 비교 — 원본 주형식∪병존형식 vs 재검사 '|' 병기)\n\n```\n" + block(l2_60, ids_l2_all) + block(l2_58, ids_l2_58) +
+        "```\n\n## L2 — 등록 기준(집합 교집합), 원본 주형식∪병존형식(v1.1 `goldset_labeled_v2.csv`) vs 재검사 '|' 병기\n\n```\n" + block(l2i_60, ids_l2_all) + block(l2i_58, ids_l2_58) +
+        "```\n\n## L2 — 정확일치(병기 참고값)\n\n```\n" + block(l2_60, ids_l2_all) + block(l2_58, ids_l2_58) +
         "```\n\n## 지표 해석\n\n"
         "L1 은 원본 분포가 극단적으로 치우쳐 있어(위임 58 / 인용 2) Cohen κ 가 "
         "유병률 역설에 취약하다. 그래서 관측일치도·PABAK·Gwet AC1 을 함께 적는다. "
