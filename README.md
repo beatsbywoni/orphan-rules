@@ -29,6 +29,7 @@ The split is by size, not by selectivity. The reproduction target defined in the
 | `src/agreement.py` | Cohen's κ, Fleiss' κ / Krippendorff's α, sample-size calculator (no dependencies) |
 | `src/retest_kappa.py`, `src/make_retest_workbook.py` | Intra-annotator re-test: blank-form generation and agreement computation |
 | `src/triage_panel.py`, `docs/triage_rubric_T1_v1.md` | Machine-panel replication of the rule-level triage under a frozen, hashed rubric (post-registration analysis) |
+| `src/claim_check.py`, `docs/claim_check_result.md` | Clause-level reading of the provisions claimed by the 20 externally-directed orphan rules that cite a ministry instrument — is the missing delegation missing in the metadata or in the law? (post-registration analysis; labels in `data/labels/claim_check_labeled.csv`) |
 | `src/make_public.py` | The script that built this bundle — manifest, scrub table, and the identifier check that gates release |
 | `codebook/annotation_guideline.md` | Annotation codebook v1.1 (delegation clauses L1–L4; orphan-rule triage T1; oracle reading O1–O8), with its own revision note |
 | `docs/deviation_log.md` | Every departure from the preregistration, with date and rationale |

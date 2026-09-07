@@ -88,6 +88,10 @@ MANIFEST: list[tuple[str, str, str]] = [
     ("src/triage_panel.py",            "src/triage_panel.py",            "copy"),
     ("docs/triage_rubric_T1_v1.md",    "docs/triage_rubric_T1_v1.md",    "copy"),
     ("docs/34_triage_panel_result.md",  "docs/triage_panel_result.md",    "copy"),
+    # 주장 조문 원문 대조 (9/7 게재가능성 진단 R2 — 등록 외 사후 분석, deviation_log D-2026-09-07-2)
+    ("src/claim_check.py",             "src/claim_check.py",             "copy"),
+    ("data/claim_check_labeled.csv",   "data/labels/claim_check_labeled.csv", "copy"),
+    ("docs/39_claim_check_result.md",  "docs/claim_check_result.md",     "copy"),
     # 그림 생성 (원고 Fig. 1–2 — 재현성 서사와 일관되게 스크립트 공개)
     ("src/make_figures.py",            "src/make_figures.py",            "copy"),
     # 이 번들 자신을 만든 코드 — 무엇이 어떻게 스크럽됐는지 독자가 확인할 수 있게
