@@ -2,7 +2,7 @@
 
 **Detection of administrative rules lacking delegation authority in Korea's legal hierarchy, evaluated against court decisions** — code, annotation data, panel outputs, and codebook.
 
-> Paper under review (target: *Artificial Intelligence and Law*). This repository accompanies a computational-legal study that formalizes delegation defects in the Korean legal order as well-formedness violations on a typed delegation graph, audits the government's own delegation-linkage metadata against statutory text, and validates defect detection against published court decisions that actually denied effect to administrative rules.
+> Paper under review (target: *Regulation & Governance*; working title "Rules Without Authority? Auditing Delegated Rulemaking Across a Ministry's Rule Stock in Korea"). Statistical detail is in the manuscript's Supporting Information S1–S7, all of which is generated from files in this repository. This repository accompanies a computational-legal study that formalizes delegation defects in the Korean legal order as well-formedness violations on a typed delegation graph, audits the government's own delegation-linkage metadata against statutory text, and validates defect detection against published court decisions that actually denied effect to administrative rules.
 >
 > **Anonymized for double-blind review.** The licence holder, the preregistration identifier, and the API account name are masked in this copy; they are restored on acceptance. Nothing else is withheld.
 
