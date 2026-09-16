@@ -95,6 +95,11 @@ MANIFEST: list[tuple[str, str, str]] = [
     # 그림 생성 (원고 Fig. 1–2 — 재현성 서사와 일관되게 스크립트 공개)
     ("src/make_figures.py",            "src/make_figures.py",            "copy"),
     # 이 번들 자신을 만든 코드 — 무엇이 어떻게 스크럽됐는지 독자가 확인할 수 있게
+    # S4 대조실험(사전등록 전 시뮬레이션) — 생성기·추정기·방향실험·대조실험 전부 (2026-09-16 추가; 재분석 §4)
+    ("sim/lcm_sim.py",                 "sim/lcm_sim.py",                 "copy"),
+    ("sim/lcm_sim2.py",                "sim/lcm_sim2.py",                "copy"),
+    ("sim/c1_directional_sim.py",      "sim/c1_directional_sim.py",      "copy"),
+    ("sim/dsl_counter_sim.py",         "sim/dsl_counter_sim.py",         "copy"),
     ("src/make_public.py",             "src/make_public.py",             "copy"),
     ("src/make_deposit.py",            "src/make_deposit.py",            "copy"),
 
