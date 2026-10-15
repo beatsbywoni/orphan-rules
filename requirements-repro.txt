@@ -1,0 +1,5 @@
+# pinned versions used for the 2026-09-16 reproduction run (cloud Linux, Python 3.11.15)
+numpy==2.4.4
+matplotlib==3.10.9
+requests>=2.31        # collection stage only
+# src/ otherwise uses the standard library only (csv, json, math, random, re)

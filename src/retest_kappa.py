@@ -100,9 +100,11 @@ def block(st, ids):
     if st is None:
         return "  (해당 없음)\n"
     d = st["disagreements"]
+    # 2026-10-16: 교집합(등록 기준) 블록의 κ는 겹치는 집합을 정렬한 뒤 계산한 값이므로 표준 Cohen κ가 아니다.
+    kname = "정렬집합 κ (교집합 기준; 표준 Cohen κ 아님)" if "교집합" in st["label"] else "Cohen κ"
     s = (f"  n = {st['n']} · 관측일치도 {st['agree']*100:.1f}% "
          f"({st['n']-len(d)}/{st['n']})\n"
-         f"  Cohen κ = {fmt(st['kappa'])} · PABAK = {fmt(st['pabak'])} "
+         f"  {kname} = {fmt(st['kappa'])} · PABAK = {fmt(st['pabak'])} "
          f"· Gwet AC1 = {fmt(st['ac1'])}"
          + (f" · κ 부트스트랩 95% CI [{st['ci'][0]:.3f}, {st['ci'][1]:.3f}] (유효 {st['ci'][2]})" if st.get('ci') else " · κ CI: 퇴화(전 재표본 완전일치)")
          + "\n")
@@ -230,7 +232,7 @@ def main():
     gap_days = (_dt.date.fromisoformat(a.completed) - _dt.date(2026, 8, 15)).days
     print("=== 원고 §6.2 에 들어갈 문장 ===\n" + sent.strip() + "\n")
 
-    doc = ROOT / "docs" / "35_sept_retest_result.md"
+    doc = ROOT / "docs" / "sept_retest_result.md"
     doc.write_text(
         "# 9월 재검사 결과 (intra-annotator)\n\n"
         f"입력 파일: `{a.file}` · 원본: `{a.orig}`\n\n"
@@ -247,7 +249,7 @@ def main():
         "## 원고 문장\n\n> " + sent.strip() + "\n",
         encoding="utf-8")
     print(f"→ {doc.relative_to(ROOT)}")
-    exp = ROOT / "data" / "goldset_retest_sept_labeled.csv"
+    exp = ROOT / "data" / "labels" / "goldset_retest_sept_labeled.csv"
     with open(exp, "w", newline="", encoding="utf-8") as f:
         cols = ["id", "L1_위임인가", "L2_위임된법형식", "L3_확신도", "L4_메모"]
         w = csv.DictWriter(f, fieldnames=cols); w.writeheader()

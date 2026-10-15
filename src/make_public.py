@@ -61,6 +61,7 @@ import argparse
 import re
 import shutil
 import sys
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -278,11 +279,34 @@ def scan_text(p: Path) -> str | None:
 
     처음 이 검사를 통과한 번들의 `LICENSE` 에 저작권자 이름이 그대로 남아
     있었다. 확장자가 없어서 화이트리스트에 걸리지 않았기 때문이다. 검사에서는
-    확장자를 신뢰하지 않는다."""
+    확장자를 신뢰하지 않는다.
+
+    2026-10-16: zip 컨테이너(xlsx/docx)는 내부 XML(docProps/core.xml 의
+    lastModifiedBy 포함)까지 이어 붙여 본다. 평문 검사만 통과한 번들의
+    `goldset_retest_sept.xlsx` 문서 속성에 저자 실명이 남아 있었기 때문이다."""
+    if zipfile.is_zipfile(p):
+        try:
+            with zipfile.ZipFile(p) as z:
+                return "\n".join(z.read(n).decode("utf-8", "ignore") for n in z.namelist())
+        except (zipfile.BadZipFile, OSError):
+            return None
     try:
         return p.read_text(encoding="utf-8")
     except (UnicodeDecodeError, OSError):
         return None
+
+
+def strip_office_props(src: Path, dst: Path) -> None:
+    """xlsx/docx 의 docProps/core.xml 에서 creator·lastModifiedBy 를 비운다. 셀 값은 손대지 않는다."""
+    with zipfile.ZipFile(src) as zin, zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED) as zout:
+        for it in zin.infolist():
+            data = zin.read(it.filename)
+            if it.filename == "docProps/core.xml":
+                txt = data.decode("utf-8")
+                txt = re.sub(r"<dc:creator>.*?</dc:creator>", "<dc:creator></dc:creator>", txt, flags=re.S)
+                txt = re.sub(r"<cp:lastModifiedBy>.*?</cp:lastModifiedBy>", "<cp:lastModifiedBy></cp:lastModifiedBy>", txt, flags=re.S)
+                data = txt.encode("utf-8")
+            zout.writestr(it, data)
 
 
 def build(dry: bool, terms, camera_ready: bool) -> tuple[list[str], list[str]]:
@@ -294,7 +318,13 @@ def build(dry: bool, terms, camera_ready: bool) -> tuple[list[str], list[str]]:
             missing.append(src_rel)
             continue
         text = read_text(src)
-        if text is None:                       # 바이너리 — 그대로 복사
+        if text is None:                       # 바이너리 — 그대로 복사 (office 컨테이너는 문서 속성만 비운다)
+            if src.suffix in (".xlsx", ".docx"):
+                changed.append(dst_rel)
+                if not dry:
+                    dst.parent.mkdir(parents=True, exist_ok=True)
+                    strip_office_props(src, dst)
+                continue
             if not (dst.exists() and dst.read_bytes() == src.read_bytes()):
                 changed.append(dst_rel)
                 if not dry:

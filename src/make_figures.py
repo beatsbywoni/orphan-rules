@@ -10,7 +10,7 @@
     폭이 좁아지는 깔때기 자체. 글자는 이름과 % 만 남기고 캡션·본문으로 뺀다.
   - 본문에 없는 수치를 만들지 않는다. 출처→목적지 흐름(생키)은 그리지 않는다.
   - 흑백 인쇄 안전: 명도 단계만. 라벨은 겹침·튀어나옴 없이 배치.
-  - 600dpi PNG (Springer 조합화상 기준).
+  - 벡터 PDF·EPS + 1000dpi PNG (Elsevier 선화 기준; 2026-10-16, 종전 600dpi PNG).
 
 사용:  python3 make_figures.py [출력디렉터리=현재]
 """
@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon, Rectangle
 
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(".")
-DPI = 600
+DPI = 1000
 INK = "0.15"          # 본문 텍스트 토큰 — 데이터 색을 글자에 입히지 않는다
 MUTED = "0.40"
 plt.rcParams.update({
@@ -31,7 +31,15 @@ plt.rcParams.update({
     "font.serif": ["DejaVu Serif", "Times New Roman"],
     "font.size": 8,
     "text.color": INK,
+    "pdf.fonttype": 42,   # embed TrueType so text stays editable/selectable in the vector files
+    "ps.fonttype": 42,
 })
+
+
+def _save(fig, stem):
+    """같은 그림을 PNG(1000dpi)·PDF·EPS로 저장한다."""
+    for ext in ("png", "pdf", "eps"):
+        fig.savefig(OUT / f"{stem}.{ext}", dpi=DPI, bbox_inches="tight", pad_inches=0.05)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Fig. 1 — destination structure of the 7,558 edges
@@ -86,8 +94,7 @@ def fig1():
 
     ax.set_xlim(0, 1); ax.set_ylim(-0.34, 1.06)
     ax.axis("off")
-    fig.savefig(OUT / "fig1_edges.png", dpi=DPI, bbox_inches="tight",
-                pad_inches=0.05)
+    _save(fig, "fig1_edges")
     plt.close(fig)
 
 
@@ -149,8 +156,7 @@ def fig2():
     ax.set_xlim(-0.1, FULL + 2.3)
     ax.set_ylim(-0.15, ys[0] + BH + 0.15)
     ax.axis("off")
-    fig.savefig(OUT / "fig2_triage.png", dpi=DPI, bbox_inches="tight",
-                pad_inches=0.05)
+    _save(fig, "fig2_triage")
     plt.close(fig)
 
 

@@ -1,15 +1,17 @@
-# MANIFEST — submission version 2026-10-15 (Computer Law & Security Review)
+# MANIFEST — submission version 2026-10-16 (Computer Law & Security Review)
 
-Analysis version frozen 2026-10-15. Labels and panel outputs date from 2026-08-15 (calibration) / 2026-08-18 registration / post-registration analyses 2026-09-16. SHA-256 over repository contents at this commit.
+Analysis version frozen 2026-10-16 (supersedes 2026-10-15: matching-sensitivity tables, evidence links in the 20-case label file, κ relabelling in the re-test script, document-property anonymization, reproduction fixes; see `docs/deviation_log.md` R-2026-10-16-1). Labels and panel outputs date from 2026-08-15 (calibration) / 2026-08-18 registration / post-registration analyses 2026-09-16. SHA-256 over repository contents at this commit.
+
+**Distribution copies.** The anonymous reviewer mirror is generated from this repository with term redaction (author identity, preregistration identifier, archive identifiers, the §6.4 case numbers and court). After the 2026-10-16 regeneration every file listed here is expected to hash identically in the mirror, because no analysis file contains a redacted term; a mismatch would indicate that the redaction touched a data file and is reported in the submission notes rather than silently accepted.
 
 | path | role | sha256 |
 |---|---|---|
-| `.gitignore` |  | `00aa938f1951237882e5718c2da0c08595465cd477bada27c986b683a66dd4c5` |
+| `.gitignore` |  | `6dfa268173c6168661506170c0f98942f3984562b17342dc432dabed43dc79cb` |
 | `LICENSE` |  | `6829857579b354e14c4582f8bf9e1cd170d041258a973e59933095adedb7c1ad` |
-| `README.md` | overview | `40f999d2a98fe92b2982f966014b66994920c0b9b64916c49a8f3ccdc00b9f6e` |
-| `REPRODUCE.md` | number-by-number reproduction | `9cf2592eafc4829719ceeb285df2d36861380b38f60190029b4f19937d60c7a7` |
+| `README.md` | overview | `e9388a8de6fd8efd5de0ad3bda76bd47453e0724902555f25e17af09f9f64447` |
+| `REPRODUCE.md` | number-by-number reproduction | `f43e0a38181bae41acd1e4127e23de368b95e1d5cc609f6c670e9c9d78d85194` |
 | `codebook/annotation_guideline.md` |  | `0182fd1e9d796b46cfafc757e26a1f3caeaf3a5fdc61a6df03b7566b1f56774a` |
-| `data/labels/claim_check_labeled.csv` | Table 4 labels (current) | `c69c6a2afa07ab04cca8dfc8357d6408361e71598817105b47be35cdc412030c` |
+| `data/labels/claim_check_labeled.csv` | Table 4 labels (current; evidence links added 2026-10-16) | `edbe2ae9f58ae1169d26ec17cdb03e5c78fd1285e853483ea1465b6845125b14` |
 | `data/labels/claim_check_labeled_v1_superseded.csv` | Table 4 labels (superseded 2026-09-16) | `92c5d785d6a603514641a5c43ff70055843fd2abe2cf1708bc4e5b01478ba699` |
 | `data/labels/external_claims_resolution.csv` |  | `6a9a5d525344c7a348dd11068c2e6b786026d2d734b1effead28427d8e2ba846` |
 | `data/labels/findings_D1_triage_v2.csv` |  | `fbe9a6db4f7f6746e317014260be351b4ed0728b171bbd60d62a1c93eb2c2dad` |
@@ -17,10 +19,11 @@ Analysis version frozen 2026-10-15. Labels and panel outputs date from 2026-08-1
 | `data/labels/goldset_labeled_v2.csv` |  | `913957a72035c70e9510bd5ed932ba73c3ad2da165576788ac233f19772ae3ef` |
 | `data/labels/goldset_llm.csv` |  | `9ced981adea2137f2aa0e6e099a1df054b5bb561cff740fd733a9e061b92393c` |
 | `data/labels/goldset_retest_0818.csv` |  | `f5ce3fbe6f7e63782d070490c69ced70de9a759e84a0c7c6f6a439530f8bffa8` |
-| `data/labels/goldset_retest_sept.xlsx` |  | `1c6b763f0a10a322e82e2732c7148de8ea905409042c5e50b5348fd9fffe538f` |
+| `data/labels/goldset_retest_sept.xlsx` | re-test workbook (document-property author field blanked 2026-10-16; cells unchanged) | `e58a007726126a46fd535b857357049cfd4bf50f28f1cca14f041a56fb387325` |
 | `data/labels/goldset_retest_sept_blank.csv` |  | `136b24d102d2566c1e5b7a1701e0bac38d067b247734fcd00ec1252e7bc441ce` |
 | `data/labels/goldset_retest_sept_labeled.csv` |  | `48126e213ecdd1362b4f0309935429f72191791b76bd927c889451008f665736` |
 | `data/labels/oracle_labeled_v2.csv` |  | `4f95bff0ded88ad71a05e2463d90f636cc352cd38418a11180d78738ec6ecd95` |
+| `data/labels/resolution_annotations.csv` | preliminary annotations (generative assistant, 2026-09-16) for the 38 targets | `99ca582678b8262824cd307ba09812e07dc49d88e8ea57f99d9a219f4383b80f` |
 | `data/labels/triage_retest_0818.csv` |  | `6870f78464e4adbf7896bd2910866acf080a87bbfa13a9f6b8308c57bcfdaff8` |
 | `data/panel/anchor_gate_full.json` |  | `b4ed7559c98422e16865273ed9f7f1e317514ebc7a1ab7e812a4c3563a3ecce3` |
 | `data/panel/calibration_map.csv` |  | `e7e22d948ff35a7d8e3a92610d771e167a65647dc5018dc4cee23c4a633611d6` |
@@ -64,15 +67,23 @@ Analysis version frozen 2026-10-15. Labels and panel outputs date from 2026-08-1
 | `data/triage_panel/labels_gpt-5-mini_r1.csv` |  | `60f9f65f3ee5a3a7b13dc3fd9b8ae3420c54384210c7b06b0f78b70904f81e82` |
 | `data/triage_panel/labels_gpt-5-mini_r2.csv` |  | `db439cd22d05a92afb5d1b23554e9401308b60ccc8ad4445b1ad7daad5b8c628` |
 | `data/triage_panel/labels_gpt-5-mini_r3.csv` |  | `fdfd7e1ee687fda86bc2422dee72da941e5b3fa5bd391a1e97f9a826fa340c5f` |
-| `docs/claim_check_result.md` |  | `914669ef0be5923d60e00843d1ea4ec6ffd77b14c4bb590ab6ea17feec1104aa` |
-| `docs/deviation_log.md` | deviation log | `21835e88d29b70c64853324a70c7ad2d43daa280d7ec29dfb194c36227f7a10f` |
+| `docs/claim_check_result.md` |  | `daca6d2c517135f5652fc7c087aba7b69ffc8d69f58fb191b9f10dec12c4da0f` |
+| `docs/deviation_log.md` | deviation log | `ac7639fb57034fbfe09e7b3200dadbb81fc46bd7ad53be14aa87a7b6c8075ad4` |
+| `docs/sept_retest_result.md` | retest_kappa.py output (2026-10-16 run) | `8ed663f1e14ea9b39164621bbd90009fbe5cca33b75dd9bf6e8951c442f74351` |
 | `docs/triage_panel_result.md` |  | `5c8945d44472e17e3b55a91650d8c33f8c4d43932d6c328088f09dcb3714de71` |
 | `docs/triage_rubric_T1_v1.md` |  | `48a21c88eefeb7b660f4b38c3842bb589da19c5135dc54494e72d8c7224a3290` |
-| `output/figures/fig1_edges.png` |  | `0f18f5275d4e4e8dd86e0b46226d41576aa9ffc5c70addf04c24d330c9ddefa7` |
-| `output/figures/fig2_triage.png` |  | `6d3ac5e6fdb0302dbd55b5fba8e192fa37716431cd5d1023511bda738358cd20` |
-| `output/tables/clause_reading_C01_C20.csv` |  | `4702aab12079cf97f6bfa7fa5dd101b70baf2ca6188fca995862aeca265cca00` |
+| `output/figures/fig1_edges.eps` |  | `4d5bdef4ad2b63cf816a5b9fc0cd07e56d5b9c2eac2de9fdcd19500263e14639` |
+| `output/figures/fig1_edges.pdf` |  | `415fedb4a9ad555512f56edf1b4c1804a92f3217c5d68e11a621d446d50043a9` |
+| `output/figures/fig1_edges.png` |  | `c604263268a11764f2609ec33eef3c4ac48d7f0ad79bcf37924a1a1f643bfaaa` |
+| `output/figures/fig2_triage.eps` |  | `3023a474d3a0b70412a225494142e34d72e9262f5ceb41f92196292543ba0866` |
+| `output/figures/fig2_triage.pdf` |  | `46457e0ba34f53343d8a082106fadcbdb608bfa43bc109a5206c467c4b48d133` |
+| `output/figures/fig2_triage.png` |  | `5d049cefd4e69fcecdb8007289ffc4675af0a785a6496523449ec831c5d26beb` |
+| `output/tables/clause_reading_C01_C20.csv` |  | `b6403fb037e78d6c1b63fb9fa4328d9c64b23f1d38a051dbe0f0cf2d45c164a9` |
+| `output/tables/resolution/d1_matching_sensitivity.csv` | D1 under identifier-only vs identifier-or-title matching (2026-10-16) | `5ce36108d9268d30785f45c24873e732750df5e52befb6b8d7e0d1533d5921a0` |
 | `output/tables/resolution/resolution_stages.csv` |  | `b962c59c4da042e8d2668117d86050b8cb36e82df5f9d16f5dad9b58c3b2f683` |
-| `output/tables/resolution/resolution_table.csv` |  | `9fc42389b8a42fd2c19aa246bd9b3bf79e807facf16d490c5f99ac85a8c618e7` |
+| `output/tables/resolution/resolution_table.csv` | 38 unresolved targets, auto + preliminary annotations merged | `41e285f32d840b47d6540d2bcd633c1e48b279a145bc739020853a0060ced0ee` |
+| `output/tables/resolution/resolution_table_auto.csv` | 38 unresolved targets, script candidate causes | `5a263ddb74dd18ade50a0889db168d1e0f573c55edec7656a87bb5af9b34d69b` |
+| `output/tables/resolution/rule_resolution_audit.csv` | 280 rule-directed links, all title candidates (2026-10-16) | `3c1fa38c1b85866732550fd77810740e901f86c743c084fbfd14ec67451a808f` |
 | `output/tables/table6_agreement.csv` |  | `7efd203887a8753b090c918c58c27ac1e5bd883db8e672af517f3805a0134eb0` |
 | `output/tables/table7_audit.csv` |  | `83f66da60f6d2e16de92e5604bf73a39d2d9fbd918f049f69e93b30503a262ac` |
 | `output/tables/weighted/sentence_group_sensitivity.csv` |  | `7ca4b14973b9daa1b2eb43278f03d411209afc35cf727ebcc5e362b204780490` |
@@ -81,8 +92,9 @@ Analysis version frozen 2026-10-15. Labels and panel outputs date from 2026-08-1
 | `output/tables/weighted/task_a_summary.json` |  | `26f63ea267da8b8335e99e44fa12b4326eea073ce917ac75d785ef00b85082a5` |
 | `output/tables/weighted/tipping_weighted.csv` |  | `9ffc19279d6d519dd46ae0a283f125fd8799ee1680e7387529298217c8c8c80a` |
 | `output/tables/weighted/weighted_estimates.csv` | Table S3.2 estimates | `5e29f0c2f67e0459aa341c9fc776e8d32facc831b7a02d577077c47f1693332f` |
+| `requirements-repro.txt` | pinned environment of the reproduction run | `f0cc5ad17c12e09a7db4d336c87961a03d108f34ca96eeea4b44e7d20731f946` |
 | `requirements.txt` |  | `209e1da5d2db63b9cfab55375c11fa874941bcf6ab06fb035f9d72d89f14be4f` |
-| `scripts/reproduce.py` | one-command reproduction | `cd3d8b596cdca40c0fa7756037866e56b7df885e4df1854f9346ced205712551` |
+| `scripts/reproduce.py` | one-command reproduction | `81a515bb692f90d20ce95f4fed49b869c87b81a559a2cc9c3fc1ddf06bd618c5` |
 | `scripts/run_crossref.sh` |  | `7b8fac0c5668c52772b44561020d2ee9496c007415467d38ac28127d17ec6665` |
 | `scripts/run_llm.sh` |  | `0c1d8c144335ae0bf598dc263edaf64536d25e4229b1abf2bf9fcc71a2216157` |
 | `scripts/run_oracle.sh` |  | `0bb68c3c3449bde6811db4d416de4396e5c8dc408d0bd183da179af0ed8f7c49` |
@@ -101,11 +113,11 @@ Analysis version frozen 2026-10-15. Labels and panel outputs date from 2026-08-1
 | `src/fulltext_check.py` |  | `fb19f60fc99faae32fd3ffaa09001d613bfcd0eb6de6ba3b5e9bddeb8c541c02` |
 | `src/llm_annotate.py` |  | `0b6768a1b514f44b484c9a6167faa51a045b3f3582b955111bd59a5de1dfae25` |
 | `src/make_deposit.py` |  | `b27492cc6f672445a34c77d0b1e1f44f580ac352a043bac52b60ef992611506c` |
-| `src/make_figures.py` |  | `4f7c02e836185e645556a76676fe34533903551c4b3b15f1cf34e32da828ab05` |
-| `src/make_public.py` |  | `84d4bae01ad01a9bea84a21a7807745fe4eec89990f699791b76c878bb048aec` |
+| `src/make_figures.py` |  | `5096c9e78b9eec8d7ffe769d900f4077ad2635354ddfc56081adc4ad77f6a6bc` |
+| `src/make_public.py` |  | `49989c1d3af58958a355c522f3f81307447accd869aca53bee8234a8dfa2dc3c` |
 | `src/make_retest_workbook.py` |  | `7e26b5f3375ce2fd640deeeea46bd33a6f124ba3e6c6e19c3515968eb6f295a0` |
 | `src/panel_annotate.py` |  | `70bc4afcce81fe5aab8281c7014ffbc16ce42497ec530cb6815ad49aa59a0cbb` |
 | `src/resolve_external_claims.py` |  | `6bdb9ee831052502c56bcb031d9c208248f6980c91ad877fd7c7cf34b98d1c5f` |
-| `src/resolve_rule_ids.py` |  | `b373de488ca2a5908b4b89ce1fdad1c552ba14bb7e2d79627c038cdfbe8a45b3` |
-| `src/retest_kappa.py` |  | `969b814d438998d5acaafdaaea695b82a26a7bb9a42190526fde6365161110e2` |
+| `src/resolve_rule_ids.py` |  | `026465d1a65e0e0020b637b1224879554c52aad87d67eeded9fca016d90ed64d` |
+| `src/retest_kappa.py` |  | `549d1be45337332e0c7978999e8ebb5bea7270477591a072deac8b09fefb2a5e` |
 | `src/triage_panel.py` |  | `b6fa08dabf59b365970031863b5ec8561fd6dfd1f6321fa67a9754935bc95084` |

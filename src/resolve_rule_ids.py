@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
 # NOTE (2026-10-15): requires data/edges.jsonl and data/admrules.jsonl from the Zenodo raw deposit (not in this repository).
-# Outputs resolution_stages.csv (280 links / 144 distinct targets, 257- and 261-rule denominators) and resolution_table.csv
-# (38 unresolved targets with CANDIDATE causes assigned from titles/years; author_confirmed is empty where not individually verified).
+# Outputs (all in output/tables/resolution/):
+#   resolution_stages.csv        280 links / 144 distinct targets, 257- and 261-rule denominators
+#   resolution_table_auto.csv    38 unresolved targets with CANDIDATE causes assigned by this script from titles/years
+#   resolution_table.csv         the same 38 rows merged with data/labels/resolution_annotations.csv (preliminary annotations,
+#                                2026-09-16, generative assistant; still candidate causes; author_confirmed empty where not verified)
+#   rule_resolution_audit.csv    (2026-10-16) one row per rule-directed link: recorded ID/title, direct-ID match, ALL title candidates
+#                                (one-to-many preserved), stage; no legal/version equivalence is asserted
+#   d1_matching_sensitivity.csv  (2026-10-16) one row per scoped rule: D1 under identifier-only vs identifier-or-title matching,
+#                                with the published T1 triage label; rules flagged only under identifier-only matching are
+#                                not_previously_triaged (no label is assigned here)
 # -*- coding: utf-8 -*-
 """task_b_resolution.py — 작업 B: 식별자 해석 단계표 + 미해결 38 고유 대상 원인 분류 (AI 예비)."""
 import json, re, csv, difflib
@@ -70,7 +78,72 @@ for nm, es in sorted(byname.items()):
     out.append({"target_title_as_recorded": title, "n_edges": len(es), "target_ids_recorded": "|".join(sorted(set(str(e["대상ID"]) for e in es))),
                 "source_laws": "|".join(sorted(set(e["상위법령명"] for e in es))), "source_articles": "|".join(sorted(set(f"{e['상위법령명']} 제{e['상위조문번호']}조" for e in es)))[:300],
                 "category_AI_preliminary": cat, "reason": reason, "closest_current_titles": " ; ".join(cand_t), "author_confirmed": ""})
-with open(OUT / "resolution_table.csv", "w", encoding="utf-8-sig", newline="") as f:
+with open(OUT / "resolution_table_auto.csv", "w", encoding="utf-8-sig", newline="") as f:
     w = csv.DictWriter(f, fieldnames=list(out[0])); w.writeheader(); w.writerows(out)
 print(len(out), Counter(r["category_AI_preliminary"] for r in out))
 print("edges among unresolved:", sum(r["n_edges"] for r in out))
+# ---- merge with stored preliminary annotations (kept as a separate input so the automatic table stays reproducible)
+ANN = ROOT / "data/labels/resolution_annotations.csv"
+ann = {r["target_title_as_recorded"]: r for r in csv.DictReader(open(ANN, encoding="utf-8-sig"))} if ANN.exists() else {}
+merged = []
+for r in out:
+    a = ann.get(r["target_title_as_recorded"], {})
+    m = {"target_title_as_recorded": r["target_title_as_recorded"], "n_edges": r["n_edges"], "target_ids_recorded": r["target_ids_recorded"],
+         "source_laws": r["source_laws"], "source_articles": r["source_articles"],
+         "category_auto": r["category_AI_preliminary"], "reason_auto": r["reason"], "closest_current_titles_auto": r["closest_current_titles"],
+         "category_annotated": a.get("category_annotated", ""), "reason_annotated": a.get("reason_annotated", ""),
+         "closest_current_titles_annotated": a.get("closest_current_titles_annotated", ""), "annotation_source": a.get("annotation_source", ""),
+         "author_confirmed": a.get("author_confirmed", "")}
+    merged.append(m)
+with open(OUT / "resolution_table.csv", "w", encoding="utf-8-sig", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=list(merged[0])); w.writeheader(); w.writerows(merged)
+print("annotated rows merged:", sum(1 for m in merged if m["category_annotated"]), "author_confirmed:", sum(1 for m in merged if m["author_confirmed"]))
+
+# ---- (2026-10-16) link-level audit table: one row per rule-directed link, all title candidates preserved
+names_multi = defaultdict(list)
+for r in scoped: names_multi[norm(r["행정규칙명"])].append(r)
+audit = []
+for i, e in enumerate(re_, 1):
+    tid = str(e.get("대상ID")); nm = norm(e.get("대상명"))
+    id_rule = ids.get(tid)
+    cands = names_multi.get(nm, [])
+    if id_rule is not None: stg = "direct_id"
+    elif len(cands) == 1: stg = "title_candidate"
+    elif len(cands) > 1: stg = "title_candidate_ambiguous"
+    else: stg = "unresolved"
+    audit.append({"link_index": i, "source_law": e["상위법령명"], "source_article": e["상위조문번호"], "recorded_target_id": tid,
+                  "recorded_target_title": e["대상명"], "normalized_title": nm,
+                  "direct_id_match_rule": tid if id_rule is not None else "",
+                  "direct_id_match_current_title": id_rule["행정규칙명"] if id_rule is not None else "",
+                  "title_candidate_ids": "|".join(str(c["행정규칙일련번호"]) for c in cands),
+                  "title_candidate_effective_dates": "|".join(str(c.get("시행일자", "")) for c in cands),
+                  "title_candidate_count": len(cands),
+                  "id_also_matches_a_title_candidate": "yes" if (id_rule is not None and tid in {str(c["행정규칙일련번호"]) for c in cands}) else ("no" if id_rule is not None else ""),
+                  "stage": stg, "legal_version_verified": "not_assessed"})
+with open(OUT / "rule_resolution_audit.csv", "w", encoding="utf-8-sig", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=list(audit[0])); w.writeheader(); w.writerows(audit)
+print("rule_resolution_audit.csv:", len(audit), Counter(a["stage"] for a in audit))
+
+# ---- (2026-10-16) rule-level matching sensitivity: identifier-only vs identifier-or-title (the published D1 rule, collect_moleg.py detect)
+deleg_ids = {str(e.get("대상ID")) for e in re_ if e.get("대상ID")}
+deleg_names = {norm(e.get("대상명")) for e in re_ if e.get("대상명")}
+tri = {str(r["행정규칙일련번호"]): r for r in csv.DictReader(open(ROOT / "data/labels/findings_D1_triage_v3.csv", encoding="utf-8-sig"))}
+sens = []
+for r in scoped:
+    rid = str(r["행정규칙일련번호"]); nm = norm(r["행정규칙명"])
+    id_hits = sum(1 for e in re_ if str(e.get("대상ID")) == rid)
+    title_hits = sum(1 for e in re_ if norm(e.get("대상명")) == nm)
+    d1_id = int(rid not in deleg_ids); d1_both = int(rid not in deleg_ids and nm not in deleg_names)
+    t = tri.get(rid)
+    sens.append({"rule_id": rid, "rule_title": r["행정규칙명"], "rule_type": r.get("행정규칙종류"), "rule_effective_date": r.get("시행일자"),
+                 "direct_id_edge_count": id_hits, "title_edge_count": title_hits,
+                 "title_shared_with_other_scoped_rule": "yes" if len(names_multi[nm]) > 1 else "no",
+                 "D1_id_only": d1_id, "D1_id_or_title": d1_both,
+                 "published_T1": (t or {}).get("T1_규범성격", ""),
+                 "triage_status": ("triaged (findings_D1_triage_v3)" if t else ("not_previously_triaged" if d1_id else "matched under both specifications"))})
+with open(OUT / "d1_matching_sensitivity.csv", "w", encoding="utf-8-sig", newline="") as f:
+    w = csv.DictWriter(f, fieldnames=list(sens[0])); w.writeheader(); w.writerows(sens)
+c_id = sum(s["D1_id_only"] for s in sens); c_both = sum(s["D1_id_or_title"] for s in sens)
+print(f"d1_matching_sensitivity.csv: D1 id-only {c_id}/257, id-or-title {c_both}/257, additional under id-only {c_id - c_both},",
+      Counter(s["triage_status"] for s in sens), "collision rules:", sum(1 for s in sens if s["title_shared_with_other_scoped_rule"] == "yes"))
+assert c_both == len(tri) and set(s["rule_id"] for s in sens if s["D1_id_or_title"]) == set(tri)

@@ -22,6 +22,24 @@
 
 이전 집계(a 8 / b 8 / c 4)는 `data/labels/claim_check_labeled_v1_superseded.csv`에 보존. 현재 라벨은 `data/labels/claim_check_labeled.csv`의 `analysis_label` (열 `original_label`, `proposed_label`, `status`, `decision_basis`, `author_confirmed` 참조). 재판독의 세부 근거는 `output/tables/clause_reading_C01_C20.csv`.
 
+## 열 사전 (`data/labels/claim_check_labeled.csv`, 2026-10-16 정리)
+
+| 열 | 지위 |
+|---|---|
+| `판정`, `하위코드`, `근거조문(저자기재)`, `메모(저자)` | **원 판독 기록(2026-08/09)**. `src/claim_check.py --analyse`가 읽는 작업 열이며 `original_label`/`original_subcode`와 동일. 메모는 역사적 기록이라 재판독으로 답이 나온 물음(C03 별표, C10 후속 조문, C11 별표)이 그대로 남아 있다. 현재 결론으로 읽지 말 것 — `original_memo_status` 참조 |
+| `original_label`, `original_subcode` | 원 판독 라벨(위 열의 사본) |
+| `proposed_label`, `proposed_by` | 2026-09-16 생성형 조수의 재판독 제안 |
+| `analysis_label`, `analysis_subcode`, `status` | **현재 라벨(Table 4)**과 채택 상태(unchanged / adopted / declined). 집계는 이 열 한 곳만 기준 |
+| `evidence_location` | 각 건의 결정적 원문이 어느 열에 있는지(evidence_text / 메모(저자) / D4_주장조문_현행텍스트) |
+| `evidence_text`, `evidence_provision` | 재판독이 인용한 결정 문구(채택·기각 건과 일부 유지 건)와 결정 조문 식별자 |
+| `text_version_basis` (구 `version_date`) | 읽은 텍스트의 판본 근거: 2026-08-15 코퍼스 스냅샷 / 파서 미해석 법령·별표의 외부 확인(판본일 미기록) / 코퍼스 밖. 확인되지 않은 날짜는 채우지 않았다 |
+| `decision_basis` | 현재 라벨의 근거(C03은 재판독의 별표 판독과 연결) |
+| `author_confirmed` | 저자 결정 사실과 기록일(2026-09-16 결정, 2026-10-15 기록) |
+| `read_scope` | 판독 범위 규칙(20건 동일) |
+| `original_memo_status` | 원 메모가 현재 결론과 어긋나는 부분이 있는지 |
+
+`output/tables/clause_reading_C01_C20.csv`는 2026-09-16 재판독의 **예비 기록**(생성형 조수 산출: 확장 검색 범위, 발견 문구, 예비 판정, 변경 후보)이다. 그 `저자_확인_여부` 열은 비어 있는 채로 두었고(당시 그 표에 확인을 기입하지 않았음), 저자의 채택 여부는 최종 파일의 `status`/`author_confirmed`에 기록되어 있으며 `linked_final_status` 열로 연결했다. 예비 표의 `확장_검색_범위`(인용 법령 전 조문·별표·부칙·같은 법령군·코퍼스 275개 법령 키워드 검색)는 발견 과정의 기록이며, 라벨은 판독 규칙(인용 조문·별표·후속 조문)으로만 정했다. 확장 검색이 찾은 미인용 후보는 C06 한 건이고 라벨에 쓰지 않았다(원고 미주 2).
+
 ## 건별
 
 | id | 규칙 | 종류 | 근거조문(저자 확인) | 판정 | 하위 | 저자 메모 |

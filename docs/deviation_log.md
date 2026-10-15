@@ -351,3 +351,14 @@ AI & Law 데스크 리젝(우선순위) 후 Regulation & Governance 로 재투�
 - **식별자 해소**: `src/resolve_rule_ids.py`(구 `task_b_resolution.py`)와 `output/tables/resolution/`. 38개 미해소 대상의 원인은 제목·연도 기반 후보이며 개별 확인되지 않음(`author_confirmed` 공란).
 - **익명화**: 코드·편차 기록에서 §6.4 사건의 법원명·사건번호를 제거(비익명 표지에만 기재). 심사용 미러에는 추가로 용어 치환을 적용.
 - **README·MANIFEST**: 저널·제목·SI 범위(S1–S5)·reference set 설명을 현재 원고에 맞춤.
+
+## R-2026-10-16-1 — 【제출 버전 2026-10-16】 매칭 민감도·근거 연결·통계 명칭·익명화 보완
+
+- **매칭 민감도(등록 외 사후 분석)**: `src/resolve_rule_ids.py`에 링크 단위 대응표(`rule_resolution_audit.csv`, 280행, 제목 후보 전부 보존)와 규칙 단위 민감도표(`d1_matching_sensitivity.csv`, 257행)를 추가. 공개된 D1 규칙(ID 또는 정규화 제목 일치, `collect_moleg.py detect`)으로는 149/257, ID 직접 일치만으로는 211/257. 추가 62건은 트리아지에 포함된 적이 없어 `not_previously_triaged`로 두고 라벨을 부여하지 않았다. 257개 규칙 중 정규화 제목이 겹치는 이름 3개(6개 규칙); 그중 2개 규칙은 ID 일치 규칙과 제목을 공유한다는 이유만으로 '연결됨'에 든다. 원고 §4.3·§5.1·§8과 Table 1이 이 조건부를 명시. 61건 대외구속지향 수는 변경 없음.
+- **미해소 38대상 표 분리**: 스크립트 산출(`resolution_table_auto.csv`)과 2026-09-16 예비 주석(`data/labels/resolution_annotations.csv`, 생성형 조수)을 분리 보관하고 `resolution_table.csv`에서 병합. 두 열 모두 후보 원인이며 `author_confirmed`는 공란.
+- **20건 판독 근거 연결**: `claim_check_labeled.csv`에 `evidence_location`·`text_version_basis`(구 `version_date`)·`original_memo_status` 열 추가, C03의 `decision_basis`에 재판독의 별표 판독을 연결. 라벨·집계(10/7/3) 변경 없음. 확인되지 않은 판본 날짜는 채우지 않음.
+- **통계 명칭**: 재검사 L2의 등록 기준(집합 교집합)은 정렬 후 계산한 값이라 표준 Cohen κ가 아님을 스크립트 출력에 표기(`정렬집합 κ`). 원고 Table 2·S1.1은 교집합 일치율과 정확일치 κ를 구분해 보고. 저자↔LLM L2 κ 0.96은 L1 일치 196건 기준(판단불가의 빈 형식은 해당없음으로 채점). 8월 재검사 정확집합 κ 0.67(0.53–0.80), 주형식 κ 1.00을 추가 산출.
+- **프롬프트 대응표**: 코드북 경계 규칙 1–7 × 사람/GPT-4o 프롬프트/패널 프롬프트/T7 규칙기의 포함 여부를 S1 Table S1.2로 정리. GPT-4o 실행의 요청 payload는 보관되지 않았음을 명시.
+- **익명화**: `data/labels/goldset_retest_sept.xlsx`의 문서 속성(lastModifiedBy)에 남아 있던 저자명을 제거(셀 값 불변; 재검사 통계 동일). `make_public.py`가 office 컨테이너 내부까지 검사·치환하도록 수정.
+- **재현 안내**: `REPRODUCE.md`의 입력 경로(`data/labels/`), `requirements-repro.txt` 추가, `scripts/reproduce.py`에 Table 3 집계와 (원자료가 있을 때) 식별자 해소 단계 추가. `retest_kappa.py` 출력 경로를 `data/labels/`·`docs/`로.
+
