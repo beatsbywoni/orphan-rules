@@ -7,3 +7,6 @@ data/panel/req_*.jsonl
 .scrub_terms
 .env
 .DS_Store
+data/edges.jsonl
+data/admrules.jsonl
+data/laws.jsonl
