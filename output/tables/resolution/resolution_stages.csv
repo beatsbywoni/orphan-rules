@@ -1,0 +1,5 @@
+﻿denominator_rule_list,unit,input,stage1_current_serial_id_match,stage2_title_match_ADDITIONAL,cumulative_resolved,unresolved,pct_id,pct_cum,pct_unresolved
+257 scoped rules (훈령·예규·고시·지침) — paper basis,link records (edges),280,72,122,194,86,25.7,69.3,30.7
+257 scoped rules (훈령·예규·고시·지침) — paper basis,distinct targets (normalized title),144,46,60,106,38,31.9,73.6,26.4
+261 all MOE rules incl. 공고·기타,link records (edges),280,73,122,195,85,26.1,69.6,30.4
+261 all MOE rules incl. 공고·기타,distinct targets (normalized title),144,47,60,107,37,32.6,74.3,25.7

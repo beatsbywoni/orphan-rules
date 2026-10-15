@@ -53,7 +53,7 @@ def build(args):
     labels = {t: {r["id"]: r[f"{t}_L1"] for r in _read_csv(PANEL / f"labels_{t}_full.csv")}
               for t in TESTS}
     cmap = {r["gold_id"]: r["panel_id"] for r in _read_csv(PANEL / "calibration_map.csv")}
-    gold = {r["id"]: r for r in _read_csv(DATA / "goldset_labeled_v2.csv")}
+    gold = {r["id"]: r for r in _read_csv(DATA / "labels" / "goldset_labeled_v2.csv")}
     err = lambda l: 0 if l == "위임" else 1
     maj = lambda pid: 1 if sum(err(labels[t][pid]) for t in TESTS) * 2 > len(TESTS) else 0
 

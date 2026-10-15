@@ -10,12 +10,12 @@ agreement.py — 어노테이터 일치도 및 표본크기 계산 (의존성 �
   # 두 라벨 파일 간 Cohen's κ (inter 또는 intra)
   python src/agreement.py kappa \
       --a data/goldset_to_label.csv --a-col L1_위임인가 \
-      --b data/goldset_llm.csv      --b-col LLM_L1
+      --b data/labels/goldset_llm.csv      --b-col LLM_L1
 
   # 3인 이상 → Fleiss' κ / Krippendorff's α
   python src/agreement.py alpha \
       --files data/goldset_to_label.csv:L1_위임인가 \
-              data/goldset_llm.csv:LLM_L1 \
+              data/labels/goldset_llm.csv:LLM_L1 \
               data/goldset_peer.csv:L1_위임인가
 
   # 골드셋 크기 정당화

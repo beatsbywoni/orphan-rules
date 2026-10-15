@@ -255,7 +255,7 @@
 
 ## C-2026-08-21-11 — 【확인】 §8.4 사건은 오라클 스크린 산물이 아님
 
-- **확인 사항**: 인천지법 2025구합50834는 `oracle_to_label.csv`,
+- **확인 사항**: §8.4(현 원고 §6.4) 사건(법원·사건번호는 비익명 표지에만 기재)은 `oracle_to_label.csv`,
   `oracle_labeled_v2.csv`, `data/raw/prec_*.json` 어디에도 없다. 즉 §8.4의 사례는
   **자동 오라클 스크리닝이 찾은 것이 아니라 외부에서 인지한 사례**다.
   (하급심 판결의 판결요지 필드가 API에서 비어 오는 문제와 정합적 — §10 기재.)
@@ -265,7 +265,7 @@
 - **함의 2(이해상충)**: 작업지시서 v1.4 §4.4의 제안 문안
   "The case entered the study through the automated oracle screen described in
   Sect. 8.1"은 **사실과 다르므로 그대로 쓰면 허위 기재가 된다.** 채택 시 문안 수정 필수.
-- **미검증**: 항소심 서울고법(인천) 2026누10025(2026-06-17) 및 그 판시 내용은 우리
+- **미검증**: 항소심(2026-06-17) 및 그 판시 내용은 우리
   데이터·공개 출처 어디에서도 확인하지 못했다. 원고 인용 전 **1차 자료 확인 필요**.
 
 ## R-2026-08-21-12 — 【저자 결정】 이해상충 공개 (선택지 A 채택)
@@ -279,8 +279,7 @@
   (d) 표지·투고 인터페이스 기재이므로 심사 중 익명성 유지.
 - **기각한 문안**: 작업지시서 v1.4 §4.4의 "The case entered the study through the
   automated oracle screen" — 사실과 다름(C-2026-08-21-11). 실제 사실로 대체.
-- **판결 검증 완료**: 1심 인천지법 2025구합50834(2025.12.18), 항소심 서울고법(인천)
-  제2행정부 2026누10025(2026.6.17, 항소기각), 2026년 7월 확정. 판결문 원본 대조.
+- **판결 검증 완료**: 1심(2025.12.18), 항소심(2026.6.17, 항소기각), 2026년 7월 확정. 판결문 원본 대조.
 
 ## D-2026-09-06-1 — 9월 재검사 실시일이 등록 문구의 날짜보다 이틀 이름
 
@@ -341,3 +340,14 @@ AI & Law 데스크 리젝(우선순위) 후 Regulation & Governance 로 재투�
 - **내용**: 검토 지시서(재분석 A–F)에 따라 저장된 출력에서 전 수치를 재생성했고, 교정 표본의 층화 설계에 맞는 가중 차이추정(4.54% → 4.25%, 설계 CI 1.1–7.4)을 추가 분석으로 병기했다. 등록 주 추정치·라벨·수치는 변경하지 않았다. 재분석 산출물은 `reanalysis_260916/`(저장소 밖)에 있다.
 - **정정**: S4 대조실험의 생성기 `sim/lcm_sim.py`·`sim/lcm_sim2.py` 가 그동안 공개 번들에 빠져 있어 Table S4.1 이 외부에서 재현 불가능했다. 이번 릴리스(v1.1.1)에 `sim/` 4개 파일을 추가한다. 재실행 결과는 2026-08-18 기록값과 전부 일치하며, 40회 반복의 Monte Carlo SE(DSL 셀 0.18–0.21pp, LCM 셀 0.04–0.08pp)를 S4 에 붙인다.
 - **정정 예정(원고)**: S4 의 "observed panel error structure"는 사실과 다름 — 생성기의 오류 구조는 관측이 아니라 적대적으로 가정된 상수(hard 층 8%, 계열 공유 오류 0.35/0.35/0.25)이고, 시뮬레이션은 등록(21:47 KST)·첫 패널 호출(22:07) 이전(21:17)에 고정되었다.
+
+
+## R-2026-10-15-1 — 【제출 버전 동결】 CLSR 투고본에 맞춘 저장소 정렬
+
+- **20건 판독 라벨**: `data/labels/claim_check_labeled.csv`를 2026-09-16 재판정본(a 10 / b 7 / c 3)으로 교체하고 이전 파일을 `claim_check_labeled_v1_superseded.csv`로 보존. 행마다 `original_label`·`proposed_label`(생성형 조수의 등록 외 재판독 제안)·`analysis_label`·`status`·`decision_basis`·`author_confirmed`를 기록. C10(후속 조문)·C11(별표)은 채택, C06(미인용 법률의 후보 근거)은 기각. 재판독 근거는 `output/tables/clause_reading_C01_C20.csv`.
+- **가중 재분석 편입**: `src/dsl_weighted.py`(구 `reanalysis/task_a_weighted.py`)와 산출물 `output/tables/weighted/`(strata_table = Table S3.3, weighted_estimates, tipping_weighted, shared_error_sensitivity, sentence_group_sensitivity). 등록 주 추정치(4.54%)는 변경하지 않고 병기. 부트스트랩·분산에서 단일 관측 층 6개를 병합 그룹으로 처리함을 S3에 명시.
+- **경로 수정**: `dsl_estimate.py`·`retest_kappa.py`·`fulltext_check.py`·`agreement.py`의 기본 입력을 `data/labels/`로.
+- **재현 명령**: `scripts/reproduce.py`, `REPRODUCE.md`.
+- **식별자 해소**: `src/resolve_rule_ids.py`(구 `task_b_resolution.py`)와 `output/tables/resolution/`. 38개 미해소 대상의 원인은 제목·연도 기반 후보이며 개별 확인되지 않음(`author_confirmed` 공란).
+- **익명화**: 코드·편차 기록에서 §6.4 사건의 법원명·사건번호를 제거(비익명 표지에만 기재). 심사용 미러에는 추가로 용어 치환을 적용.
+- **README·MANIFEST**: 저널·제목·SI 범위(S1–S5)·reference set 설명을 현재 원고에 맞춤.

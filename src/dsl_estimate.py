@@ -177,7 +177,7 @@ def cmd_dsl(args):
     surr_mean = sum(surr.values()) / N
 
     # 보정표본
-    gold = {r["id"]: r for r in _read(DATA / "goldset_labeled_v2.csv")}
+    gold = {r["id"]: r for r in _read(DATA / "labels" / "goldset_labeled_v2.csv")}
     if scope == "full":
         cmap = {r["gold_id"]: r["panel_id"] for r in _read(PANEL / "calibration_map.csv")}
         if any(not v for v in cmap.values()):

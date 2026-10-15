@@ -1,0 +1,14 @@
+﻿specification,weighting,surrogate_mean_Mbar,correction,estimate,se_normal,ci95_normal_lo,ci95_normal_hi,ci95_boot_lo,ci95_boot_hi,numerator_denominator,note
+DSL primary (K=7 majority),unweighted (registered),0.0954,-0.05,0.0454,0.01545,0.01511,0.07568,0.0154,0.0754,Mbar=721/7558; corr from n=200 calibration records,등록 주 추정치 재생성(변경 없음)
+DSL primary (K=7 majority),stratified (N_h/N),0.0954,-0.05291,0.04249,0.01591,0.01131,0.07367,0.01057,0.07414,Mbar=721/7558; corr from n=200 calibration records,
+DSL excl. T7 (K=6),unweighted (registered),0.08891,-0.04,0.04891,0.0156,0.01835,0.07948,0.01891,0.07391,Mbar=672/7558; corr from n=200 calibration records,
+DSL excl. T7 (K=6),stratified (N_h/N),0.08891,-0.04563,0.04328,0.01517,0.01356,0.07301,0.01149,0.06979,Mbar=672/7558; corr from n=200 calibration records,
+undecidable→delegation (extreme),unweighted (registered),0.01469,0.015,0.02969,0.01116,0.00782,0.05156,0.01469,0.04969,Mbar=111/7558; corr from n=200 calibration records,
+undecidable→delegation (extreme),stratified (N_h/N),0.01469,0.00412,0.01881,0.00742,0.00426,0.03335,0.00388,0.03515,Mbar=111/7558; corr from n=200 calibration records,
+undecidable→non-delegation (extreme = registered convention),unweighted (registered),0.0954,-0.05,0.0454,0.01545,0.01511,0.07568,0.0154,0.0754,Mbar=721/7558; corr from n=200 calibration records,
+undecidable→non-delegation (extreme = registered convention),stratified (N_h/N),0.0954,-0.05291,0.04249,0.01591,0.01131,0.07367,0.01057,0.07414,Mbar=721/7558; corr from n=200 calibration records,
+human-only prevalence (calibration sample),unweighted (Wilson),,,0.035,,0.01706,0.07047,,,7/200,Section 4.4 sample bound 3.5% (1.7–7.0)
+human-only prevalence (calibration sample),stratified (N_h/N),,,0.02257,0.00928,0.00439,0.04075,0.00507,0.04159,"7/200 records, weighted by N_h/(N n_h)",design-based CI (collapsed rare strata)
+spec curve: majority_uncorrected,"n/a (population census, no calibration term)",,,0.0954,,,,,,N=7558,from data/panel/dsl_results_full.json (unchanged)
+spec curve: family_collapsed_LCM3,"n/a (population census, no calibration term)",,,0.12165,,,,,,N=7558,from data/panel/dsl_results_full.json (unchanged)
+spec curve: dependence_LCM4,"n/a (population census, no calibration term)",,,0.08326,,,,,,N=7558,from data/panel/dsl_results_full.json (unchanged)

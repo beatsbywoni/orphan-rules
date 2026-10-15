@@ -1,0 +1,50 @@
+{
+  "N": 7558,
+  "n": 200,
+  "n_strata": 15,
+  "collapsed_strata_for_variance": [
+    "위임자치법규/없음",
+    "시행규칙/대통령령",
+    "위임행정규칙/대통령령",
+    "시행령/없음",
+    "위임자치법규/고시",
+    "위임행정규칙/부령"
+  ],
+  "unweighted_primary": {
+    "Mbar": 0.0954,
+    "corr": -0.05,
+    "est": 0.0454,
+    "se": 0.01545,
+    "ci_lo": 0.01511,
+    "ci_hi": 0.07568
+  },
+  "weighted_primary": {
+    "Mbar": 0.0954,
+    "corr": -0.05291,
+    "est": 0.04249,
+    "se": 0.01591,
+    "ci_lo": 0.01131,
+    "ci_hi": 0.07367
+  },
+  "discordant": 10,
+  "concordant_delegation": 183,
+  "concordant_nondelegation": 7,
+  "sentence_groups": 98,
+  "group_size_distribution": {
+    "1": 72,
+    "2": 8,
+    "3": 7,
+    "5": 2,
+    "6": 4,
+    "7": 1,
+    "8": 1,
+    "9": 1,
+    "11": 1,
+    "22": 1
+  },
+  "groups_that_flip_outside_1.7-7.0_unweighted": 11,
+  "groups_that_flip_outside_1.7-7.0_weighted": 9,
+  "A6_diff_pp": -0.291,
+  "A6_within_0.5pp": true,
+  "A6_CIs_overlap": true
+}

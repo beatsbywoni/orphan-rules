@@ -1,0 +1,15 @@
+﻿direction,sentence_pattern,records_in_calibration,strata,identical_sentences_in_population,shift_per_record_unweighted_pp,shift_per_record_weighted_pp,estimate_unweighted,estimate_weighted
+"author over-called delegation (human=delegation, panel=non)",사항은 대통령령으로,5,시행령/대통령령; 시행령/대통령령; 시행령/대통령령; 시행령/대통령령; 시행령/대통령령,302,0.5,0.531; 0.531; 0.531; 0.531; 0.531,0.0704,0.06905
+"author over-called delegation (human=delegation, panel=non)",교육부령으로 정하는,2,시행규칙/부령; 시행규칙/부령,177,0.5,0.525; 0.525,0.0554,0.05299
+"author over-called delegation (human=delegation, panel=non)",2. 제2항에 따른 지역다문화교육지원센터의 경우: 해당 시ㆍ도의 조례,1,위임자치법규/조례,16,0.5,0.529,0.0504,0.04778
+"author over-called delegation (human=delegation, panel=non)","2. 그 밖에 국립학교의 경우에는 학칙으로, 공립학교의 경우에는 시·도의 조례로 미리 학부모의 의견을 수렴하도록 정한 사항",1,위임자치법규/조례,16,0.5,0.529,0.0504,0.04778
+"author over-called delegation (human=delegation, panel=non)",사항은 교육부령으로,1,시행규칙/부령,106,0.5,0.525,0.0504,0.04774
+author over-called delegation — ALL discordant delegation calls flipped,(all),10,,,0.5,,0.0954,0.0954
+author under-called delegation — ALL 7 non-delegation calls flipped,(all 7),7,시행령/대통령령; 시행규칙/없음; 시행령/없음; 위임자치법규/없음; 시행규칙/부령; 위임행정규칙/고시; 시행규칙/없음,,0.5,0.531; 0.198; 0.013; 0.225; 0.525; 0.566; 0.198,0.0104,0.01992
+author under-called delegation (single record),또는 대통령령으로,1,시행령/대통령령,3,0.5,0.531,0.0404,0.03718
+author under-called delegation (single record),법률로 정한다,1,시행규칙/없음,17,0.5,0.198,0.0404,0.0405
+author under-called delegation (single record),법령과,1,시행령/없음,1,0.5,0.013,0.0404,0.04236
+author under-called delegation (single record),2. 영 제17조제1항제3호 후단에 따른 지방자치단체의 인사규칙에서 정하는 바에 따라 자격증 소지를 의무화하는 특수직급의 신규임용시험 또는 전직시험에 응시하여 임용된 사람의 해당 자격증,1,위임자치법규/없음,17,0.5,0.225,0.0404,0.04024
+author under-called delegation (single record),교육부령으로 정한 급식기준,1,시행규칙/부령,1,0.5,0.525,0.0404,0.03724
+author under-called delegation (single record),학교의 교육과정 등을 확인하여 제6항에 따른 학교법인을 고시한다.,1,위임행정규칙/고시,1,0.5,0.566,0.0404,0.03683
+author under-called delegation (single record),법률로 정한다,1,시행규칙/없음,17,0.5,0.198,0.0404,0.0405

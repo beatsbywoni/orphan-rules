@@ -10,7 +10,7 @@ v3 — 2026-08-14. 실제 API 응답으로 전 구간 구조 검증 완료.
 파이프라인
 ---------
   smoke       권한·응답구조 진단
-  casecheck   인천지법 2025구합50834 사례 재현
+  casecheck   §6.4 사례(사건번호는 표지에만 기재) 재현
   laws        교육부 소관 법령 수집        → data/laws.jsonl
   admrules    교육부 소관 행정규칙 수집    → data/admrules.jsonl
   delegation  위임 간선 전수 조회          → data/edges.jsonl
@@ -856,7 +856,7 @@ def cmd_oracle(args):
 # ---------------------------------------------------------------- casecheck
 
 def cmd_casecheck(args):
-    print("=== 사례 재현: 인천지법 2025구합50834 ===\n")
+    print("=== 사례 재현: 원고 §6.4 사건 (case number withheld in the review copy; see title page) ===\n")
     js = _get(SEARCH_URL, {"target": "admrul", "search": 1,
                            "query": "교육공무원 인사관리규정", "display": 5})
     rows = [r for r in _L((next(iter(js.values()), {}) or {}).get("admrul"))
@@ -924,7 +924,7 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
     for n, h in (("smoke", "권한·응답구조 진단"),
-                 ("casecheck", "2025구합50834 사례 재현"),
+                 ("casecheck", "§6.4 사례 재현"),
                  ("laws", "소관 법령 수집"),
                  ("admrules", "행정규칙 목록+본문 수집"),
                  ("delegation", "위임 간선 전수 조회"),

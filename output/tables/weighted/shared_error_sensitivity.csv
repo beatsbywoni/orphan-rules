@@ -1,0 +1,9 @@
+﻿assumed_shared_error_rate_in_concordant_records,direction,concordant_records_affected,expected_shift_unweighted_pp,expected_shift_weighted_pp,estimate_unweighted,estimate_weighted,note
+0.005,both wrongly call delegation (true = non-delegation) → estimate rises,183/200 concordant-delegation records (weighted share 0.9245),0.458,0.462,0.04997,0.04711,"sensitivity analysis, not an error-rate estimate"
+0.005,both wrongly call non-delegation (true = delegation) → estimate falls,7/200 concordant-non-delegation records (weighted share 0.0226),-0.018,-0.011,0.04522,0.04238,"sensitivity analysis, not an error-rate estimate"
+0.01,both wrongly call delegation (true = non-delegation) → estimate rises,183/200 concordant-delegation records (weighted share 0.9245),0.915,0.925,0.05455,0.05173,"sensitivity analysis, not an error-rate estimate"
+0.01,both wrongly call non-delegation (true = delegation) → estimate falls,7/200 concordant-non-delegation records (weighted share 0.0226),-0.035,-0.023,0.04505,0.04226,"sensitivity analysis, not an error-rate estimate"
+0.02,both wrongly call delegation (true = non-delegation) → estimate rises,183/200 concordant-delegation records (weighted share 0.9245),1.83,1.849,0.0637,0.06098,"sensitivity analysis, not an error-rate estimate"
+0.02,both wrongly call non-delegation (true = delegation) → estimate falls,7/200 concordant-non-delegation records (weighted share 0.0226),-0.07,-0.045,0.0447,0.04204,"sensitivity analysis, not an error-rate estimate"
+0.05,both wrongly call delegation (true = non-delegation) → estimate rises,183/200 concordant-delegation records (weighted share 0.9245),4.575,4.623,0.09115,0.08871,"sensitivity analysis, not an error-rate estimate"
+0.05,both wrongly call non-delegation (true = delegation) → estimate falls,7/200 concordant-non-delegation records (weighted share 0.0226),-0.175,-0.113,0.04365,0.04136,"sensitivity analysis, not an error-rate estimate"

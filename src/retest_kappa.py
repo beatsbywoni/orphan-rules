@@ -165,8 +165,8 @@ def sentence(l1_60, l1_58, l2_60, completed="2026-09-06"):
 # ── main ────────────────────────────────────────────────────────────────
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--file", default="data/goldset_retest_sept.xlsx")
-    ap.add_argument("--orig", default="data/goldset_labeled_v2.csv")
+    ap.add_argument("--file", default="data/labels/goldset_retest_sept.xlsx")
+    ap.add_argument("--orig", default="data/labels/goldset_labeled_v2.csv")
     ap.add_argument("--apply", action="store_true", help="원고 자리표시자 교체")
     ap.add_argument("--completed", default="2026-09-06", help="라벨링 완료일 (YYYY-MM-DD)")
     a = ap.parse_args()
