@@ -74,10 +74,10 @@ Analysis version frozen 2026-10-16 (supersedes 2026-10-15: matching-sensitivity 
 | `docs/triage_rubric_T1_v1.md` |  | `48a21c88eefeb7b660f4b38c3842bb589da19c5135dc54494e72d8c7224a3290` |
 | `output/figures/fig1_edges.eps` |  | `4d5bdef4ad2b63cf816a5b9fc0cd07e56d5b9c2eac2de9fdcd19500263e14639` |
 | `output/figures/fig1_edges.pdf` |  | `415fedb4a9ad555512f56edf1b4c1804a92f3217c5d68e11a621d446d50043a9` |
-| `output/figures/fig1_edges.png` |  | `c604263268a11764f2609ec33eef3c4ac48d7f0ad79bcf37924a1a1f643bfaaa` |
+| `output/figures/fig1_edges.png` |  | `0760fa288789cd51c3ecbba47b26b631c4433a56381e906b01e83ae46a36f399` |
 | `output/figures/fig2_triage.eps` |  | `3023a474d3a0b70412a225494142e34d72e9262f5ceb41f92196292543ba0866` |
 | `output/figures/fig2_triage.pdf` |  | `46457e0ba34f53343d8a082106fadcbdb608bfa43bc109a5206c467c4b48d133` |
-| `output/figures/fig2_triage.png` |  | `5d049cefd4e69fcecdb8007289ffc4675af0a785a6496523449ec831c5d26beb` |
+| `output/figures/fig2_triage.png` |  | `973eebc174ce659de0322bfd860f443feb143188ddcc82784dc1de3b4544c9e5` |
 | `output/tables/clause_reading_C01_C20.csv` |  | `b6403fb037e78d6c1b63fb9fa4328d9c64b23f1d38a051dbe0f0cf2d45c164a9` |
 | `output/tables/resolution/d1_matching_sensitivity.csv` | D1 under identifier-only vs identifier-or-title matching (2026-10-16) | `5ce36108d9268d30785f45c24873e732750df5e52befb6b8d7e0d1533d5921a0` |
 | `output/tables/resolution/resolution_stages.csv` |  | `b962c59c4da042e8d2668117d86050b8cb36e82df5f9d16f5dad9b58c3b2f683` |
