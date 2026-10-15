@@ -1,5 +1,6 @@
 # pinned versions used for the 2026-09-16 reproduction run (cloud Linux, Python 3.11.15)
 numpy==2.4.4
 matplotlib==3.10.9
+openpyxl==3.1.5      # retest_kappa.py reads data/labels/goldset_retest_sept.xlsx (called by scripts/reproduce.py)
 requests>=2.31        # collection stage only
-# src/ otherwise uses the standard library only (csv, json, math, random, re)
+# src/ otherwise uses the standard library only (csv, json, math, random, re); claim_check.py's workbook builder also needs openpyxl

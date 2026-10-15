@@ -9,6 +9,7 @@ Steps (all deterministic; see REPRODUCE.md for the full list of numbers each one
                                                human-only weighted 2.26% (0.44–4.08), panel-undecidable-as-delegation 1.88% (0.43–3.33),
                                                strata table (Table S3.3), weighted tipping points, shared-error and sentence-group sensitivity
   3. src/retest_kappa.py                    -> intra-annotator re-test agreement (Table 2)
+  3b. src/l2_agreement.py                   -> form-label agreement (Table 2 row 2 / S1.1), scoring scope stated
   4. counts from data/labels/claim_check_labeled.csv (analysis_label)      -> Table 4: a 10 / b 7 / c 3
   5. counts from data/labels/findings_D1_triage_v3.csv                     -> Table 3: 149 -> 7 / 4 / 138 = 61 + 77
   6. (only if data/edges.jsonl and data/admrules.jsonl from the Zenodo deposit are present) src/resolve_rule_ids.py
@@ -24,6 +25,7 @@ def run(*args):
 run("src/dsl_estimate.py", "dsl", "--scope", "full")
 run("src/dsl_weighted.py")
 run("src/retest_kappa.py")
+run("src/l2_agreement.py")
 rows = list(csv.DictReader(open(ROOT / "data/labels/claim_check_labeled.csv", encoding="utf-8-sig")))
 print("\nTable 4 (claim_check analysis_label):", dict(Counter(r["analysis_label"] for r in rows)))
 w = list(csv.DictReader(open(ROOT / "output/tables/weighted/weighted_estimates.csv", encoding="utf-8-sig")))

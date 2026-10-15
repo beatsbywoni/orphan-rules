@@ -1,6 +1,6 @@
-# MANIFEST — submission version 2026-10-16 (Computer Law & Security Review)
+# MANIFEST — submission version 2026-10-16b (Computer Law & Security Review)
 
-Analysis version frozen 2026-10-16 (supersedes 2026-10-15: matching-sensitivity tables, evidence links in the 20-case label file, κ relabelling in the re-test script, document-property anonymization, reproduction fixes; see `docs/deviation_log.md` R-2026-10-16-1). Labels and panel outputs date from 2026-08-15 (calibration) / 2026-08-18 registration / post-registration analyses 2026-09-16. SHA-256 over repository contents at this commit.
+Analysis version frozen 2026-10-16, second cut (R-2026-10-16-2: agreement-table scoring scope, constant-predictor κ, l2_agreement.py, openpyxl dependency, table7 marked superseded; supersedes 2026-10-15: matching-sensitivity tables, evidence links in the 20-case label file, κ relabelling in the re-test script, document-property anonymization, reproduction fixes; see `docs/deviation_log.md` R-2026-10-16-1). Labels and panel outputs date from 2026-08-15 (calibration) / 2026-08-18 registration / post-registration analyses 2026-09-16. SHA-256 over repository contents at this commit.
 
 **Distribution copies.** The anonymous reviewer mirror is generated from this repository with term redaction (author identity, preregistration identifier, archive identifiers, the §6.4 case numbers and court). After the 2026-10-16 regeneration every file listed here is expected to hash identically in the mirror, because no analysis file contains a redacted term; a mismatch would indicate that the redaction touched a data file and is reported in the submission notes rather than silently accepted.
 
@@ -8,8 +8,8 @@ Analysis version frozen 2026-10-16 (supersedes 2026-10-15: matching-sensitivity 
 |---|---|---|
 | `.gitignore` |  | `6dfa268173c6168661506170c0f98942f3984562b17342dc432dabed43dc79cb` |
 | `LICENSE` |  | `6829857579b354e14c4582f8bf9e1cd170d041258a973e59933095adedb7c1ad` |
-| `README.md` | overview | `e9388a8de6fd8efd5de0ad3bda76bd47453e0724902555f25e17af09f9f64447` |
-| `REPRODUCE.md` | number-by-number reproduction | `f43e0a38181bae41acd1e4127e23de368b95e1d5cc609f6c670e9c9d78d85194` |
+| `README.md` | overview | `16459bde7f5c11ab52242366bfcd72f92bd1c3606a09489166acc7c2f5e64583` |
+| `REPRODUCE.md` | number-by-number reproduction | `bda92041930a009a4ca2006bd215d8b653cb48c7ac3f70b9a2bf654250925c8f` |
 | `codebook/annotation_guideline.md` |  | `0182fd1e9d796b46cfafc757e26a1f3caeaf3a5fdc61a6df03b7566b1f56774a` |
 | `data/labels/claim_check_labeled.csv` | Table 4 labels (current; evidence links added 2026-10-16) | `edbe2ae9f58ae1169d26ec17cdb03e5c78fd1285e853483ea1465b6845125b14` |
 | `data/labels/claim_check_labeled_v1_superseded.csv` | Table 4 labels (superseded 2026-09-16) | `92c5d785d6a603514641a5c43ff70055843fd2abe2cf1708bc4e5b01478ba699` |
@@ -68,7 +68,7 @@ Analysis version frozen 2026-10-16 (supersedes 2026-10-15: matching-sensitivity 
 | `data/triage_panel/labels_gpt-5-mini_r2.csv` |  | `db439cd22d05a92afb5d1b23554e9401308b60ccc8ad4445b1ad7daad5b8c628` |
 | `data/triage_panel/labels_gpt-5-mini_r3.csv` |  | `fdfd7e1ee687fda86bc2422dee72da941e5b3fa5bd391a1e97f9a826fa340c5f` |
 | `docs/claim_check_result.md` |  | `daca6d2c517135f5652fc7c087aba7b69ffc8d69f58fb191b9f10dec12c4da0f` |
-| `docs/deviation_log.md` | deviation log | `ac7639fb57034fbfe09e7b3200dadbb81fc46bd7ad53be14aa87a7b6c8075ad4` |
+| `docs/deviation_log.md` | deviation log | `524f50de6b045e84fc1b766267e1f95b28ed382c8a8c82a434b120b9293378fa` |
 | `docs/sept_retest_result.md` | retest_kappa.py output (2026-10-16 run) | `8ed663f1e14ea9b39164621bbd90009fbe5cca33b75dd9bf6e8951c442f74351` |
 | `docs/triage_panel_result.md` |  | `5c8945d44472e17e3b55a91650d8c33f8c4d43932d6c328088f09dcb3714de71` |
 | `docs/triage_rubric_T1_v1.md` |  | `48a21c88eefeb7b660f4b38c3842bb589da19c5135dc54494e72d8c7224a3290` |
@@ -84,17 +84,17 @@ Analysis version frozen 2026-10-16 (supersedes 2026-10-15: matching-sensitivity 
 | `output/tables/resolution/resolution_table.csv` | 38 unresolved targets, auto + preliminary annotations merged | `41e285f32d840b47d6540d2bcd633c1e48b279a145bc739020853a0060ced0ee` |
 | `output/tables/resolution/resolution_table_auto.csv` | 38 unresolved targets, script candidate causes | `5a263ddb74dd18ade50a0889db168d1e0f573c55edec7656a87bb5af9b34d69b` |
 | `output/tables/resolution/rule_resolution_audit.csv` | 280 rule-directed links, all title candidates (2026-10-16) | `3c1fa38c1b85866732550fd77810740e901f86c743c084fbfd14ec67451a808f` |
-| `output/tables/table6_agreement.csv` |  | `7efd203887a8753b090c918c58c27ac1e5bd883db8e672af517f3805a0134eb0` |
-| `output/tables/table7_audit.csv` |  | `83f66da60f6d2e16de92e5604bf73a39d2d9fbd918f049f69e93b30503a262ac` |
+| `output/tables/table6_agreement.csv` | agreement table (current, 2026-10-16) | `9411671e892cc91e6e9a9f8435210fccfeb6e9eeea672385fa7ac80e6ebbe7e1` |
+| `output/tables/table7_audit_SUPERSEDED_2026-08.csv` | August summary, superseded; historical artefact | `83f66da60f6d2e16de92e5604bf73a39d2d9fbd918f049f69e93b30503a262ac` |
 | `output/tables/weighted/sentence_group_sensitivity.csv` |  | `7ca4b14973b9daa1b2eb43278f03d411209afc35cf727ebcc5e362b204780490` |
 | `output/tables/weighted/shared_error_sensitivity.csv` |  | `afc69075a66b09d93f8dfb53452719d73a43076f73748b974139e1207828ef6e` |
 | `output/tables/weighted/strata_table.csv` | Table S3.3 | `bdb738fbc9004d900367c6e6f845c09d8c2cd2aa9a776491be44781fd1437752` |
 | `output/tables/weighted/task_a_summary.json` |  | `26f63ea267da8b8335e99e44fa12b4326eea073ce917ac75d785ef00b85082a5` |
 | `output/tables/weighted/tipping_weighted.csv` |  | `9ffc19279d6d519dd46ae0a283f125fd8799ee1680e7387529298217c8c8c80a` |
 | `output/tables/weighted/weighted_estimates.csv` | Table S3.2 estimates | `5e29f0c2f67e0459aa341c9fc776e8d32facc831b7a02d577077c47f1693332f` |
-| `requirements-repro.txt` | pinned environment of the reproduction run | `f0cc5ad17c12e09a7db4d336c87961a03d108f34ca96eeea4b44e7d20731f946` |
+| `requirements-repro.txt` | pinned environment of the reproduction run | `a1b8e0ea1c4b88af7dd8fbe44b442f2f0dcb6d1c18815927d84026bb6b37df53` |
 | `requirements.txt` |  | `209e1da5d2db63b9cfab55375c11fa874941bcf6ab06fb035f9d72d89f14be4f` |
-| `scripts/reproduce.py` | one-command reproduction | `81a515bb692f90d20ce95f4fed49b869c87b81a559a2cc9c3fc1ddf06bd618c5` |
+| `scripts/reproduce.py` | one-command reproduction | `61981adb09ed988b4c6997230643651ecb96fd335b1725a7e64d12392cad911a` |
 | `scripts/run_crossref.sh` |  | `7b8fac0c5668c52772b44561020d2ee9496c007415467d38ac28127d17ec6665` |
 | `scripts/run_llm.sh` |  | `0c1d8c144335ae0bf598dc263edaf64536d25e4229b1abf2bf9fcc71a2216157` |
 | `scripts/run_oracle.sh` |  | `0bb68c3c3449bde6811db4d416de4396e5c8dc408d0bd183da179af0ed8f7c49` |
@@ -111,6 +111,7 @@ Analysis version frozen 2026-10-16 (supersedes 2026-10-15: matching-sensitivity 
 | `src/dsl_estimate.py` | registered estimator | `53b96a5bcee43a06a21bfa8a8d0e42dcde5fee81e30adf012409f7efc33f7b3f` |
 | `src/dsl_weighted.py` | design-weighted re-analysis | `566cf87391f95a52ac9294d5b4a08599f0e0aae59a408282c17edc720cf08eb3` |
 | `src/fulltext_check.py` |  | `fb19f60fc99faae32fd3ffaa09001d613bfcd0eb6de6ba3b5e9bddeb8c541c02` |
+| `src/l2_agreement.py` | L2 agreement figures of Table 2 / S1.1 (2026-10-16) | `341b336d904750436cd0f2799fb6b05fd02f0398b668195721933e01bc78239b` |
 | `src/llm_annotate.py` |  | `0b6768a1b514f44b484c9a6167faa51a045b3f3582b955111bd59a5de1dfae25` |
 | `src/make_deposit.py` |  | `b27492cc6f672445a34c77d0b1e1f44f580ac352a043bac52b60ef992611506c` |
 | `src/make_figures.py` |  | `5096c9e78b9eec8d7ffe769d900f4077ad2635354ddfc56081adc4ad77f6a6bc` |

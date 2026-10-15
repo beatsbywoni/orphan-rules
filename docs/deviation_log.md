@@ -362,3 +362,12 @@ AI & Law 데스크 리젝(우선순위) 후 Regulation & Governance 로 재투�
 - **익명화**: `data/labels/goldset_retest_sept.xlsx`의 문서 속성(lastModifiedBy)에 남아 있던 저자명을 제거(셀 값 불변; 재검사 통계 동일). `make_public.py`가 office 컨테이너 내부까지 검사·치환하도록 수정.
 - **재현 안내**: `REPRODUCE.md`의 입력 경로(`data/labels/`), `requirements-repro.txt` 추가, `scripts/reproduce.py`에 Table 3 집계와 (원자료가 있을 때) 식별자 해소 단계 추가. `retest_kappa.py` 출력 경로를 `data/labels/`·`docs/`로.
 
+## R-2026-10-16-2 — 【제출 직전 정정】 일치도 표의 채점 범위·상수 예측기 κ·지침 설명·판독 시점
+
+- **L2 κ 채점 범위**: Table 2·S1.1의 저자↔GPT-4o 정확집합 κ 0.96(190/196)은 "closed value list"가 아니라 보조 열의 학칙·정관 등 목록 외 형식까지 포함한 전체 기록 집합으로 계산한 값이다(목록 내 형식만이면 194/196, κ 0.987). 수치는 유지하고 설명을 바로잡았다. `src/l2_agreement.py` 추가, `output/tables/table6_agreement.csv` 갱신.
+- **마커 추출기 L1 κ**: "정의 불가"는 틀림. 상수 예측(전부 위임)에서 관측 일치 = 기대 일치 = 0.965이므로 κ = 0.
+- **지침 설명**: §4.4의 "identical guideline"을 "코드북에서 도출한 고정 프롬프트"로 정정. 규칙 6·7이 "v1.1에서 추가"되었다는 서술은 코드북의 개정 주석(교육규칙 값·병존 표기만 변경, 판정 기준 불변)이 뒷받침하지 않으므로 삭제하고, 프롬프트의 실제 내용(규칙 1–4)으로만 서술. 동결된 코드북·프롬프트 파일은 소급 수정하지 않음.
+- **AI 사용 범위**: 미해소 38대상의 원인 후보 주석(`data/labels/resolution_annotations.csv`)도 생성형 조수의 예비 산출임을 원고 선언·표지에 명시. "frozen, hashed codebook"을 "고정 프롬프트(패널 시스템 프롬프트는 SHA-256 보관; GPT-4o 요청 payload 미보관)"로 정정.
+- **판독 시점**: §5.2에 코퍼스 판독(2026-08-15 스냅샷)과 외부 확인(판본일 미기록; C03 별표 대응 미추적)을 구분하고, 10/7/3이 단일 판본일로 검증된 분류가 아니라 채택 라벨 집계임을 명시.
+- **의존성**: `requirements-repro.txt`에 openpyxl 추가(`retest_kappa.py`가 xlsx를 읽음). `table7_audit.csv`는 8월 요약 표로 본문보다 강한 표현을 담고 있어 `_SUPERSEDED_2026-08` 접미사로 역사적 산출물로 표시.
+
