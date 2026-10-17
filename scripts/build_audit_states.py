@@ -22,6 +22,14 @@ Each state records WHERE the open question sits, using one of five origins:
   matching        the study's identifier/title matching rule
   collection      content the interface did not return (attachments)
   legal_reading   a question of legal interpretation the study did not decide
+Title screens (exploratory candidate generation, not identity checks): titles are normalized by removing
+parenthesized text and the brackets 「」『』, years ("2026년", "2026년도"), edition numbers ("제30차", "30차") and all
+other digits, then whitespace and the characters · ㆍ . ,. If one normalized title contains the other the score is 1.0;
+otherwise it is difflib.SequenceMatcher(None, a, b).ratio(). Scores are rounded to two decimals before the threshold is
+applied. The screen over all rules without a matched record uses 0.85 against every unmatched (L4) link; the screen for
+the 20 read rules uses 0.60 but only against unmatched links whose source instrument is one the rule cites. The two
+thresholds were set for this exploratory step; they were not preregistered or optimized, and a title score does not
+establish that two instruments belong to the same series.
 The output is an implementation example of the audit states in Table 5 of the paper. It is not a gold standard,
 not a legal diagnosis, and not a measure of anyone's error rate.
 """
@@ -62,8 +70,8 @@ LINK_STATES = OrderedDict([
         next_action="check identity and version against the rule's amendment history")),
     ("title_candidate_ambiguous", dict(
         state="L3 several title candidates", origin="matching",
-        licensed="the link points to one of several current rules",
-        not_licensed="which one",
+        licensed="several current rules are title-match candidates",
+        not_licensed="that any of them is the intended target",
         next_action="resolve the candidates by version history")),
     ("unresolved", dict(
         state="L4 no match in the collected corpus", origin="study_scope or source_record (not confirmed)",
@@ -166,10 +174,10 @@ R = OrderedDict([
             "the rule does not, by its own text, address actors outside the administration",
             "that no delegation could be relevant to any article",
             "none for authority tracing; classification is contestable for personnel rules")),
-    ("R6a", ("R6a delegating language found in the cited provision", "source_record or matching (not distinguished)",
+    ("R6a", ("R6a delegating language found in the cited provision", "source_record, matching or legal_reading (not distinguished)",
              "the cited provision contains delegating language, and no record matched to this rule under the study's matching rule",
              "that the delegation covers this rule's subject matter or existed when the rule issued",
-             "add or check the link at source; legal review of scope and timing")),
+             "legal review of scope and timing; if the delegation applies, check whether a record exists at source")),
     ("R6b", ("R6b no delegating language in the cited provision", "legal_reading",
              "the provision the rule cites does not delegate under the reading rule",
              "that the rule lacks authority; uncited provisions were not searched",
@@ -254,7 +262,7 @@ write("state_summary.csv", summary, ["unit", "state", "n", "origin_of_open_quest
 claims = {r["id"]: r for r in read("data/labels/claim_check_labeled.csv")}
 TRACE = {
     "C10": ("The cited decree article had been deleted; its successor (effective 2025-12-02) contains delegating language. "
-            "Label b -> a (record omission as of the audit date).",
+            "Label b -> a. Whether a corresponding record exists and whether the provision applies to this rule remain unresolved.",
             "The rule issued on 2025-10-17, before the successor article took effect; the trace establishes nothing about "
             "authority at issuance, nor that the successor covers the rule's subject matter."),
     "C11": ("The delegating language sits in the annex (별표 1) of the cited decree article. Label c -> a.",
