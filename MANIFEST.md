@@ -1,14 +1,14 @@
-# MANIFEST — submission version 2026-10-16b (Computer Law & Security Review)
+# MANIFEST — submission version 2026-10-16b (analysis); manuscript retargeted to Government Information Quarterly 2026-10-17
 
 Analysis version frozen 2026-10-16, second cut (R-2026-10-16-2: agreement-table scoring scope, constant-predictor κ, l2_agreement.py, openpyxl dependency, table7 marked superseded; supersedes 2026-10-15: matching-sensitivity tables, evidence links in the 20-case label file, κ relabelling in the re-test script, document-property anonymization, reproduction fixes; see `docs/deviation_log.md` R-2026-10-16-1). Labels and panel outputs date from 2026-08-15 (calibration) / 2026-08-18 registration / post-registration analyses 2026-09-16. SHA-256 over repository contents at this commit.
 
-**Distribution copies.** The anonymous reviewer mirror is generated from this repository with term redaction (author identity, preregistration identifier, archive identifiers, the §6.4 case numbers and court). After the 2026-10-16 regeneration every file listed here is expected to hash identically in the mirror, because no analysis file contains a redacted term; a mismatch would indicate that the redaction touched a data file and is reported in the submission notes rather than silently accepted.
+**Distribution copies.** The anonymous reviewer mirror is generated from this repository with term redaction (author identity, preregistration identifier, archive identifiers, the case numbers and court of the case discussed in manuscript §5.5 (§6.4 in the earlier version)). After the 2026-10-16 regeneration every file listed here is expected to hash identically in the mirror, because no analysis file contains a redacted term; a mismatch would indicate that the redaction touched a data file and is reported in the submission notes rather than silently accepted.
 
 | path | role | sha256 |
 |---|---|---|
 | `.gitignore` |  | `6dfa268173c6168661506170c0f98942f3984562b17342dc432dabed43dc79cb` |
 | `LICENSE` |  | `6829857579b354e14c4582f8bf9e1cd170d041258a973e59933095adedb7c1ad` |
-| `README.md` | overview | `16459bde7f5c11ab52242366bfcd72f92bd1c3606a09489166acc7c2f5e64583` |
+| `README.md` | overview | `ec79c8d0bff531f9538e5e398c4f0dd42ea30fa970aeed1ce32cb5b090c99087` |
 | `REPRODUCE.md` | number-by-number reproduction | `bda92041930a009a4ca2006bd215d8b653cb48c7ac3f70b9a2bf654250925c8f` |
 | `codebook/annotation_guideline.md` |  | `0182fd1e9d796b46cfafc757e26a1f3caeaf3a5fdc61a6df03b7566b1f56774a` |
 | `data/labels/claim_check_labeled.csv` | Table 4 labels (current; evidence links added 2026-10-16) | `edbe2ae9f58ae1169d26ec17cdb03e5c78fd1285e853483ea1465b6845125b14` |
@@ -68,7 +68,7 @@ Analysis version frozen 2026-10-16, second cut (R-2026-10-16-2: agreement-table 
 | `data/triage_panel/labels_gpt-5-mini_r2.csv` |  | `db439cd22d05a92afb5d1b23554e9401308b60ccc8ad4445b1ad7daad5b8c628` |
 | `data/triage_panel/labels_gpt-5-mini_r3.csv` |  | `fdfd7e1ee687fda86bc2422dee72da941e5b3fa5bd391a1e97f9a826fa340c5f` |
 | `docs/claim_check_result.md` |  | `daca6d2c517135f5652fc7c087aba7b69ffc8d69f58fb191b9f10dec12c4da0f` |
-| `docs/deviation_log.md` | deviation log | `524f50de6b045e84fc1b766267e1f95b28ed382c8a8c82a434b120b9293378fa` |
+| `docs/deviation_log.md` | deviation log | `c809dbadb640fc99edbbb7866da24741a5bb731199adf1ecb5b4416660718c4f` |
 | `docs/sept_retest_result.md` | retest_kappa.py output (2026-10-16 run) | `8ed663f1e14ea9b39164621bbd90009fbe5cca33b75dd9bf6e8951c442f74351` |
 | `docs/triage_panel_result.md` |  | `5c8945d44472e17e3b55a91650d8c33f8c4d43932d6c328088f09dcb3714de71` |
 | `docs/triage_rubric_T1_v1.md` |  | `48a21c88eefeb7b660f4b38c3842bb589da19c5135dc54494e72d8c7224a3290` |
