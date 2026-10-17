@@ -68,7 +68,7 @@ Analysis version frozen 2026-10-16, second cut (R-2026-10-16-2: agreement-table 
 | `data/triage_panel/labels_gpt-5-mini_r2.csv` |  | `db439cd22d05a92afb5d1b23554e9401308b60ccc8ad4445b1ad7daad5b8c628` |
 | `data/triage_panel/labels_gpt-5-mini_r3.csv` |  | `fdfd7e1ee687fda86bc2422dee72da941e5b3fa5bd391a1e97f9a826fa340c5f` |
 | `docs/claim_check_result.md` |  | `daca6d2c517135f5652fc7c087aba7b69ffc8d69f58fb191b9f10dec12c4da0f` |
-| `docs/deviation_log.md` | deviation log | `e5604131bceb51727a2e5029e66492a01117848d11a9c54ba87f1eac164eb8f8` |
+| `docs/deviation_log.md` | deviation log | `345b47818121c34f24bcca81ae0d3c3664c30fe111889fb3790e94ec3c44e162` |
 | `docs/sept_retest_result.md` | retest_kappa.py output (2026-10-16 run) | `8ed663f1e14ea9b39164621bbd90009fbe5cca33b75dd9bf6e8951c442f74351` |
 | `docs/triage_panel_result.md` |  | `5c8945d44472e17e3b55a91650d8c33f8c4d43932d6c328088f09dcb3714de71` |
 | `docs/triage_rubric_T1_v1.md` |  | `48a21c88eefeb7b660f4b38c3842bb589da19c5135dc54494e72d8c7224a3290` |
@@ -122,8 +122,8 @@ Analysis version frozen 2026-10-16, second cut (R-2026-10-16-2: agreement-table 
 | `src/resolve_rule_ids.py` |  | `026465d1a65e0e0020b637b1224879554c52aad87d67eeded9fca016d90ed64d` |
 | `src/retest_kappa.py` |  | `549d1be45337332e0c7978999e8ebb5bea7270477591a072deac8b09fefb2a5e` |
 | `src/triage_panel.py` |  | `b6fa08dabf59b365970031863b5ec8561fd6dfd1f6321fa67a9754935bc95084` |
-| `scripts/build_audit_states.py` | audit states (post-registration) | `a2e8f483e080a2e59cacadf896cc1c12f482bda507311237d1a0e1c1ebab9eed` |
-| `output/tables/audit_states/link_states.csv` | audit states, links | `c6575adda2ef8bdd81bfb3666be4d19c1ddc1f0ef82bc3424d0920220a53baec` |
-| `output/tables/audit_states/rule_states.csv` | audit states, rules | `9dc6a783f05db309dad4525ab9cc3c84cb3da012cc1ca14ebba1dbd8b2c3798c` |
-| `output/tables/audit_states/state_summary.csv` | audit-state counts | `4b58fe9894f0e0af28f5c0cb0645837366d8a80bbd1bc04430aa5ba6564bc3f0` |
-| `output/tables/audit_states/case_traces.csv` | case traces C06, C10, C11 | `0375c21cf1fc5654b9e033897c378ab2b5aac2d25e3da86b2423584c88078895` |
+| `scripts/build_audit_states.py` | audit states (post-registration) | `dbac01771677dd7d0840f18df789d4fb290f20f656f58902e73100045230689d` |
+| `output/tables/audit_states/link_states.csv` | audit states, links | `b8bbceeef11eadd67d4e6595a7760b405898ad4c07e1e7d535af86530c30e524` |
+| `output/tables/audit_states/rule_states.csv` | audit states, rules | `c997924d10a3808e44d75156fea9e9d76ffce1fac5f83de15a0020cf3e6f1362` |
+| `output/tables/audit_states/state_summary.csv` | audit-state counts | `925e4b2a617ff3cd104e0d889274871628bba36183bd2a6ca895497f5cc1aac2` |
+| `output/tables/audit_states/case_traces.csv` | case traces C06, C10, C11 | `9c79cd2186c4a771d4486770919a199886c877f936dca9782f220f4995545d5e` |
