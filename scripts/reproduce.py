@@ -12,6 +12,7 @@ Steps (all deterministic; see REPRODUCE.md for the full list of numbers each one
   3b. src/l2_agreement.py                   -> form-label agreement (Table 2 row 2 / S1.1), scoring scope stated
   4. counts from data/labels/claim_check_labeled.csv (analysis_label)      -> Table 4: a 10 / b 7 / c 3
   5. counts from data/labels/findings_D1_triage_v3.csv                     -> Table 3: 149 -> 7 / 4 / 138 = 61 + 77
+  5b. scripts/build_audit_states.py                                         -> audit states (post-registration, 2026-10-17): 280 links, 257 rules
   6. (only if data/edges.jsonl and data/admrules.jsonl from the Zenodo deposit are present) src/resolve_rule_ids.py
                                                -> identifier resolution 72/280, 194 cumulative, 38/144; matching sensitivity 211 vs 149
 Figures: python src/make_figures.py (requires matplotlib).
@@ -36,6 +37,7 @@ t1 = Counter(r["T1_규범성격"] for r in tri)
 print(f"\nTable 3 (findings_D1_triage_v3 T1): {len(tri)} candidates -> cross-ministry {t1.get('해당없음(타부처위임)', 0)} / annex-only {t1.get('', 0)} / "
       f"adjudicated {t1.get('대외구속지향', 0) + t1.get('내부관리', 0)} = external {t1.get('대외구속지향', 0)} + internal {t1.get('내부관리', 0)}; "
       f"23.7% = {t1.get('대외구속지향', 0)}/257 = {100 * t1.get('대외구속지향', 0) / 257:.1f}%")
+run("scripts/build_audit_states.py")
 if (ROOT / "data/edges.jsonl").exists() and (ROOT / "data/admrules.jsonl").exists():
     run("src/resolve_rule_ids.py")
 else:
